@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from springtime.forms import UserForm
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
 
 def index(request):
     #This should change to return the index page
@@ -39,4 +41,35 @@ def register(request):
 	return render(request, 'springtime/register.html', 
 		{'user_form': user_form,
 		 'registered': registered})
+
+def user_login(request):
+	# If request is HTTP POST, try to pull out the relevant information.
+	if request.method == 'POST':
+		# Gather usernamd and password provided by user in login form.
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+
+		# See if username/password combination is valid.
+		user = authenticate(username=username, password=password)
+
+		# If we have User object, the details are correct.
+		# If None, no user with matching credentials.
+		if user:
+			if user.is_active():
+				# If account is valid and active, log the user in.
+				login(request, user)
+				return HttpResponseRedirect(reverse('index'))
+			else:
+				# An inactive account was used - no logging in.
+				return HttpResponse("Your Springtime account is disabled.")
+
+		else:
+			# Bad login details provided, can't log user in.
+			print("Invalid login details: {0}, {1}".format(username, password))
+			return HttpResponse("Invalid login details supplied.")
+
+		# The request is not a HTTP POST, so display the login form.
+	else:
+		return render(request, 'springtime/login.html', {})
+
 
