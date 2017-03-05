@@ -23,7 +23,7 @@ r e a c h  f o r  t h e  s t a r s <br />
 <div>
 	<ul>
 	{% if user.is_authenticated %}
-		<li><a href="{% url 'ogout' %}?next=/springtime/">Log out</a></li>
+		<li><a href="{% url 'logout' %}?next=/springtime/">Log out</a></li>
 	{% else %}
 		<li><a href="{% url 'register' %}">Register</a></li>
 		<li><a href="{% url 'login' %}">Login</a></li>
