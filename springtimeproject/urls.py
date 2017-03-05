@@ -21,5 +21,6 @@ from springtime import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^springtime/', include('springtime.urls')),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^admin/', admin.site.urls),
 ]

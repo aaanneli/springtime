@@ -29,6 +29,19 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Registration variables
+# If True, users can register
+REGISTRATION_OPEN = True
+# One-week activation window
+ACCOUNT_ACTIVATION_DAYS = 7
+# If True, the user will automatically be logged in.
+REGISTRATION_AUTO_LOGIN = True
+# The page users arrive at when they log in.
+LOGIN_REDIRECT_URL = '/rango/'
+# Page users are directed to if they are not logged in and trying
+# to access pages requiring authentication.
+LOGIN_URL = '/accounts/login/'
+
 
 # Application definition
 
@@ -40,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'springtime',
+    'registration',
 ]
 
 MIDDLEWARE = [
