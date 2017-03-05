@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from springtime.forms import UserForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     #This should change to return the index page
-    return render(request, 'springtime/main.html')
+    return render(request, 'springtime/index.html')
 
 def register(request):
 	# Boolean value tells template whether registration was successful. 
@@ -72,4 +73,10 @@ def user_login(request):
 	else:
 		return render(request, 'springtime/login.html', {})
 
+
+@login_required
+def user_logout(request):
+	logout(request)
+	# Return user to homepage.
+	return HttpResponseRedirect(reverse('index'))
 
