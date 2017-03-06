@@ -16,11 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from springtime import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^index', views.index, name='index'),
     url(r'^springtime/', include('springtime.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^admin/', admin.site.urls),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

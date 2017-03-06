@@ -1,36 +1,70 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 
 <html>
 
 <head>
 
 <title>SpringTime!</title>
-
+<link rel="stylesheet" href="{% static "css/base.css" %}" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    
 </head>
 
 <body>
 
-<h1>Testing springiness...</h1>
+<div id="page-wrapper">
 
-<div>
+<!-- Header: has the top bar, login functionality -->
+<div id="header-wrapper" class="container">
+    <header id="header" class="container">
+        <!-- Logo -->
+            <div id="logo">
+                <h1><a href="{% url 'index' %}">SpringTime</a></h1>
+            </div>
 
-r e a c h  f o r  t h e  s t a r s <br />
-
-<strong>the way to amarillo is up</strong><br />
-
-</div>
-
-<div>
-	<ul>
+        <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <!-- For the moment, Contact Us and Our Trampolines redirect to index -->
+                    <li><a href="{% url 'index' %}">Contact Us</a></li>
+                    <li><a href="{% url 'index' %}">Our Trampolines</a></li>
 	{% if user.is_authenticated %}
 		<li><a href="{% url 'logout' %}?next=/springtime/">Log out</a></li>
 	{% else %}
 		<li><a href="{% url 'register' %}">Register</a></li>
 		<li><a href="{% url 'login' %}">Login</a></li>
 	{% endif %}
-	</ul>
+                </ul>
+            </nav>
+
+    </header>
 </div>
 
+<!-- This div contains page-specific content -->
+<div id="page-content" class="container">
+     {% block body_block %}
+     {% endblock %}
+</div>
+    
+    
+<div id="footer">
+            <div class="row">
+                <div class="12u">
+                    <div id="copyright">
+                        <ul class="menu">
+                            <li>&copy; Spring Time 2017, Team B.  Very few rights, if any, reserved. CSS Framework: <a href="https://html5up.net/license">HTML5up.net</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+    
+</div>
+</div>
+    
 </body>
 
 </html>
