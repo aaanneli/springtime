@@ -56,7 +56,7 @@ def user_login(request):
 		# If we have User object, the details are correct.
 		# If None, no user with matching credentials.
 		if user:
-			if user.is_active():
+			if user.is_active:
 				# If account is valid and active, log the user in.
 				login(request, user)
 				return HttpResponseRedirect(reverse('index'))

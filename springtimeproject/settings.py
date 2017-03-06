@@ -38,7 +38,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 # If True, the user will automatically be logged in.
 REGISTRATION_AUTO_LOGIN = True
 # The page users arrive at when they log in.
-LOGIN_REDIRECT_URL = '/rango/'
+LOGIN_REDIRECT_URL = '/springtime/'
 # Page users are directed to if they are not logged in and trying
 # to access pages requiring authentication.
 LOGIN_URL = '/accounts/login/'
@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'registration',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
