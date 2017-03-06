@@ -38,7 +38,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 # If True, the user will automatically be logged in.
 REGISTRATION_AUTO_LOGIN = True
 # The page users arrive at when they log in.
-LOGIN_REDIRECT_URL = '/springtime/'
+LOGIN_REDIRECT_URL = '/springtime/bookings'
 # Page users are directed to if they are not logged in and trying
 # to access pages requiring authentication.
 LOGIN_URL = '/accounts/login/'

@@ -32,6 +32,7 @@
                     <li><a href="{% url 'index' %}">Contact Us</a></li>
                     <li><a href="{% url 'index' %}">Our Trampolines</a></li>
 	{% if user.is_authenticated %}
+        <li><a href ="{% url 'bookings' %}">My Bookings</a></li>
 		<li><a href="{% url 'logout' %}?next=/springtime/">Log out</a></li>
 	{% else %}
 		<li><a href="{% url 'register' %}">Register</a></li>

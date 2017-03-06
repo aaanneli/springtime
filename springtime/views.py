@@ -80,3 +80,6 @@ def user_logout(request):
 	# Return user to homepage.
 	return HttpResponseRedirect(reverse('index'))
 
+def bookings(request):
+	return render(request, 'springtime/bookings.html', ())
+
