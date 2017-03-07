@@ -28,7 +28,9 @@ SECRET_KEY = '4ok$c)22m&@guug83gim21#mr6s-!diedmb-zr3li85-6uhacg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'springtime.pythonanywhere.com',
+    ]
 
 # Registration variables
 # If True, users can register
@@ -80,7 +82,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.core.context_processors.static',
+                #'django.core.context_processors.static',
             ],
         },
     },

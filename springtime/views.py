@@ -10,13 +10,13 @@ def index(request):
     return render(request, 'springtime/index.html')
 
 def register(request):
-	# Boolean value tells template whether registration was successful. 
+	# Boolean value tells template whether registration was successful.
 	# Set to false initially.
 	registered = False
 
 	# If HTTP POST, process form data.
 	if request.method == 'POST':
-		# Grab information from raw form information. 
+		# Grab information from raw form information.
 		user_form = UserForm(data=request.POST)
 
 		#If form is valid...
@@ -39,7 +39,7 @@ def register(request):
 		user_form = UserForm()
 
 	# Render the template depending on the context.
-	return render(request, 'springtime/register.html', 
+	return render(request, 'springtime/register.html',
 		{'user_form': user_form,
 		 'registered': registered})
 
