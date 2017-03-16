@@ -21,3 +21,11 @@ Thumbs.db
 # Useless python files #
 ########################
 *.pyc
+
+springtime/migrations/*
+.idea/
+C
+.ide
+
+
+

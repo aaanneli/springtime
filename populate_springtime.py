@@ -29,6 +29,9 @@ def populate():
 	 "broken": False, 
 	 "category" : "Rectangular"}]
 
+    for cat in Tramp_cat:
+        c = add_tramp(cat["trampolineID"], cat["broken"], cat["category"])
+        
 #Reviews, not including username or rating 
     Reviews = [
 	{"content": "Easy booking, lots of fun!"}, 
@@ -38,19 +41,21 @@ def populate():
 	{"content": "Worst experience of my life"}, 
 	{"content": "I didn't want my kids back, could you keep 	them please?"}]
 
-#def add_review(revNumber, time, userID, content, rating):
-#    r = Review.objects.get_or_create(review=revNumber, content=content [0]
-#    r.content=content
-#    r.rating=rating
-#    r.save()
-#    return r
+def add_review(revNumber, time, userID, content, rating):
+    print "adding review"
+    r = Review.objects.get_or_create(review=revNumber, content=content)[0]
+    r.content=content
+    r.rating=rating
+    r.save()
+    return r
 
-#def add_tramp(trampolineID, broken, category):
-#    t = Trampoline.objects.get_or_create(trampolineID=trampolineID)[0]
-#    t.broken = broken
-#    t.category=category
-#    t.save()
-#    return t
+def add_tramp(trampolineID, broken, category):
+    print "adding tramp"
+    t = Trampoline.objects.get_or_create(trampolineID=trampolineID)[0]
+    t.broken = broken
+    t.category=category
+    t.save()
+    return t
 
 #Start execution here!
 if __name__ == '__main__':

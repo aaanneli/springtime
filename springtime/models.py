@@ -33,14 +33,15 @@ class Category(models.Model):
 
 class Trampoline(models.Model):
     trampolineID = models.CharField(max_length=8, primary_key = True, unique = True)
-    broken = models.BooleanField()
+    broken = models.BooleanField(default = False)
     category = models.CharField(max_length=20, null = False)
 
     def __str__(self):
-		return self.trampolineID.category
+        return self.trampolineID
 
     def __unicode__(self):
-		return self.trampolineID.category
+
+        return self.trampolineID
 
 class Booking(models.Model):
     refNumber = models.IntegerField(primary_key = True, unique = True)
@@ -48,6 +49,9 @@ class Booking(models.Model):
     endTime = models.DateTimeField(null = False)
     trampolineID = models.ManyToManyField(Trampoline)
     userID = models.ManyToManyField(User)
+
+    def __unicode__(self):
+        return self.refNumber
 
 
 class Review(models.Model):
@@ -58,7 +62,7 @@ class Review(models.Model):
     rating = models.IntegerField(null = False)
 
     def __str__(self):
-		return self.content
+        return self.content
 
     def __unicode__(self):
 		return self.content
