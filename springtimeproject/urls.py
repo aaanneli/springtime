@@ -18,13 +18,19 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from springtime import views
+from registration.backends.simple.views import RegistrationView
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^index', views.index, name='index'),
     url(r'^springtime/', include('springtime.urls')),
+    url(r'^accounts/register/$', RegistrationView.as_view(), name="registration_register"),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user):
+        return '/springtime/index/'

@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    #This should change to return the index page
+    #Return the index page
     return render(request, 'springtime/index.html')
 
 def register(request):
@@ -92,7 +92,7 @@ def user_login(request):
 
 		# The request is not a HTTP POST, so display the login form.
 	else:
-		return render(request, 'springtime/login.html', {})
+		return render(request, 'registration/login.html', {})
 
 
 @login_required
