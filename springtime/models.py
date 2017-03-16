@@ -34,7 +34,7 @@ class Category(models.Model):
 class Trampoline(models.Model):
     trampolineID = models.CharField(max_length=8, primary_key = True, unique = True)
     broken = models.BooleanField(default = False)
-    category = models.CharField(max_length=20, null = False)
+    category = models.ForeignKey(Category)
 
     def __str__(self):
         return self.trampolineID
