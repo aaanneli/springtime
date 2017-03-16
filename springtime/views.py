@@ -11,6 +11,16 @@ def index(request):
     #Return the index page
     return render(request, 'springtime/index.html', {})
 
+def validate_username(request):
+	username = request.GET.get('username', None)
+	data = {
+		'is_taken': User.objects.filter(username__iexact=username).exists()
+	}
+
+	if data['is_taken']:
+		data['error_message'] = 'A user with this username already exists.'
+	return JsonResponse(data)
+
 def register(request):
 	# Boolean value tells template whether registration was successful.
 	# Set to false initially.
@@ -93,7 +103,6 @@ def user_login(request):
 		# The request is not a HTTP POST, so display the login form.
 	else:
 		return render(request, 'registration/login.html', {})
-
 
 @login_required
 def user_logout(request):
