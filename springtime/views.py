@@ -3,6 +3,8 @@ from springtime.forms import UserForm
 from springtime.models import Trampoline
 from springtime.models import Category
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required

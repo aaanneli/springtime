@@ -1,27 +1,8 @@
 {% extends 'springtime/main.html' %}
 
-{% block javascript %}
-<script>
-	$("#id_username").change(function () {
-		var form = $(this).closest("form");
-
-		$.ajax({
-			url: form.attr("data-validate-username-url"),
-			data: form.serialize() ,
-			dataType: 'json',
-			success: function(data) {
-				if (data.is_taken) {
-					alert(data.error_message);
-				}
-			}
-		});
-	});
-</script>
-{% endblock %}
-
 {% block body_block %}
 	<h1>Login</h1>
-	<form method="post" data-validate-username-url="{% url 'validate_username' %}">
+	<form method="post" action=".">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<input type="submit" value="Log in"/>

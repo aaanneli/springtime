@@ -1,10 +1,29 @@
 {% extends 'springtime/main.html' %}
 
+{% block javascript %}
+<script>
+ 	$("#id_username").on('change keyup paste', function() {
+  	var form = $(this).closest("form");
+      $.ajax({
+        url: form.attr("data-validate-username-url"),
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (data){
+          if (data.is_taken) {
+            alert(data.error_message);
+          }
+        }
+      });
+
+    });
+</script>
+{% endblock %}
+
 {% block body_block %}
 	<h1>Register</h1>
-	<form method="post" action=".">
+	<form method="post" data-validate-username-url="{% url 'validate_username' %}">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<input type="submit" value="Submit"/>
-	</form>
+	</form> 
 {% endblock %}
