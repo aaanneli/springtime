@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     #Return the index page
-    return render(request, 'springtime/index.html')
+    return render(request, 'springtime/index.html', {})
 
 def register(request):
 	# Boolean value tells template whether registration was successful.
@@ -101,6 +101,10 @@ def user_logout(request):
 	# Return user to homepage.
 	return HttpResponseRedirect(reverse('index'))
 
+@login_required
+def password_change(request):
+	return render(request, 'registration/password_change_form.html', {})
+
 def bookings(request):
-	return render(request, 'springtime/bookings.html', ())
+	return render(request, 'springtime/bookings.html', {})
 
