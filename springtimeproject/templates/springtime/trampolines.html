@@ -1,0 +1,21 @@
+{% extends 'springtime/main.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Our trampolines
+{% endblock %}
+{% block body_block %}
+
+    {% if categories %}
+        <ul>
+            {% for category in categories %}
+            <li>
+            <a href="/rango/category/{{ category.slug }}">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <strong>There are no categories.</strong>
+    {% endif %}
+    
+{% endblock %}

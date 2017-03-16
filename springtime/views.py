@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from springtime.forms import UserForm
+from springtime.models import Trampoline
+from springtime.models import Category
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -42,6 +44,25 @@ def register(request):
 	return render(request, 'springtime/register.html',
 		{'user_form': user_form,
 		 'registered': registered})
+
+def trampolines(request):
+    context_dict = {}
+    categories = Category.objects.all()
+    context_dict['categories'] = categories
+    return render(request, 'springtime/trampolines.html', context_dict)
+
+def show_category(request, category_name_slug):
+    context_dict = {}
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+        trampolines = Trampoline.objects.filter(category=category)
+        context_dict['trampolines'] = trampolines
+        context_dict['category'] = category
+
+    except Category.DoesNotExist:
+        context_dict['category'] = None
+        context_dict['trampolines'] = None
+        return render(request, 'springtime/category.html', context_dict)
 
 def user_login(request):
 	# If request is HTTP POST, try to pull out the relevant information.

@@ -1,0 +1,24 @@
+{% extends 'springtime/main.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Category
+{% endblock %}
+{% block body_block %}
+
+    {% if category %}
+    <h1>{{ category.name }}</h1>
+        {% if trampolines %}
+        <ul>
+            {% for trampoline in trampolines %}
+            <li>{{ trampoline.trampolineID }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong>No pages currently in category.</strong>
+        {% endif %}
+    {% else %}
+        The specified category does not exist!
+    {% endif %}
+    
+{% endblock %}

@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="{% static "css/base.css" %}" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    
+
+
 </head>
 
 <body>
@@ -30,7 +30,7 @@
                 <ul>
                     <!-- For the moment, Contact Us and Our Trampolines redirect to index -->
                     <li><a href="{% url 'index' %}">Contact Us</a></li>
-                    <li><a href="{% url 'index' %}">Our Trampolines</a></li>
+                    <li><a href="{% url 'trampolines' %}">Our Trampolines</a></li>
 	{% if user.is_authenticated %}
         <li><a href ="{% url 'bookings' %}">My Bookings</a></li>
 		<li><a href="{% url 'logout' %}?next=/springtime/">Log out</a></li>
@@ -49,8 +49,8 @@
      {% block body_block %}
      {% endblock %}
 </div>
-    
-    
+
+
 <div id="footer">
             <div class="row">
                 <div class="2u">
@@ -64,19 +64,19 @@
                 </div>
             </div>
 
-    
+
 </div>
-    
-    
+
+
 </div>
-    
-    
+
+
             <script src="{% static "assets/js/jquery.min.js" %}"></script>
             <script src="{% static "assets/js/jquery.dropotron.min.js" %}"></script>
             <script src="{% static "assets/js/skel.min.js" %}"></script>
             <script src="{% static "assets/js/util.js" %}"></script>
             <script src="{% static "assets/js/main.js" %}"></script>
-    
+
 </body>
 
 </html>

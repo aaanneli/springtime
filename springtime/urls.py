@@ -8,4 +8,7 @@ urlpatterns = [
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^bookings/$', views.bookings, name='bookings'),
+    url(r'^trampolines/$', views.trampolines, name='trampolines'),
+    url(r'^category/(?P<category_name_slug>[\w\-]+)/$',
+        views.show_category, name='show_category'),
 ]
