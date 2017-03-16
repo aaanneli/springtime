@@ -116,6 +116,9 @@ def user_logout(request):
 def password_change(request):
 	return render(request, 'registration/password_change_form.html', {})
 
+def account(request):
+	return render(request, 'springtime/my_account.html', {})
+
 def bookings(request):
 	return render(request, 'springtime/bookings.html', {})
 
