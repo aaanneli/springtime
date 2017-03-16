@@ -33,7 +33,7 @@
                     <li><a href="{% url 'trampolines' %}">Our Trampolines</a></li>
 	{% if user.is_authenticated %}
         <li><a href ="{% url 'bookings' %}">My Bookings</a></li>
-		<li><a href="{% url 'logout' %}?next=/springtime/">Log out</a></li> 
+		<li><a href="{% url 'auth_logout' %}?next=/springtime/">Log out</a></li> 
 	{% else %}
 		<li><a href="{% url 'registration_register' %}">Register</a></li>
 		<li><a href="{% url 'auth_login' %}">Login</a></li> 
