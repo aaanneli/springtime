@@ -15,15 +15,15 @@ class UserProfile(models.Model):
 		return self.user.username
 
 class Trampoline(models.Model):
-    trampolineID = models.CharField(max_length=10, primary_key = True, unique = True)
+    trampolineID = models.CharField(max_length=8, primary_key = True, unique = True)
     broken = models.BooleanField()
     category = models.CharField(max_length=20, null = False)
 
     def __str__(self):
-		return self.trampolineID
+		return self.trampolineID.category
 
     def __unicode__(self):
-		return self.trampolineID
+		return self.trampolineID.category
 
 class Booking(models.Model):
     refNumber = models.IntegerField(primary_key = True, unique = True)
