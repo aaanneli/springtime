@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^ajax/validate_username/$', views.validate_username, name='validate_username'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^accounts/password/change/$', views.password_change, name='password_change'),
+    url(r'^accounts/password/change/done/$', views.password_change_done, name='password_change_done'),
     url(r'^bookings/$', views.bookings, name='bookings'),
     url(r'^my_account/$', views.account, name='account'),
     url(r'^trampolines/$', views.trampolines, name='trampolines'),

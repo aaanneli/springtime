@@ -114,7 +114,11 @@ def user_logout(request):
 
 @login_required
 def password_change(request):
-	return render(request, 'registration/password_change_form.html', {})
+	return render(request, 'registration/password_change.html', {})
+
+@login_required
+def password_change_done(request):
+	return render(request, 'registration/password_change_done.html', {})
 
 def account(request):
 	return render(request, 'springtime/my_account.html', {})
