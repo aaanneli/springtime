@@ -1,6 +1,10 @@
 {% extends 'springtime/main.html' %}
 {% load staticfiles %}
 
+{% block title_block %}
+<title>Index</title>
+{% endblock %}
+
 {% block body_block %}
 	{% if user.is_authenticated %}
 		Welcome back, {{ user.username }}
