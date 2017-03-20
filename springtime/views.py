@@ -74,7 +74,8 @@ def show_category(request, category_name_slug):
     except Category.DoesNotExist:
         context_dict['category'] = None
         context_dict['trampolines'] = None
-        return render(request, 'springtime/category.html', context_dict)
+
+    return render(request, 'springtime/category.html', context_dict)
 
 def user_login(request):
 	# If request is HTTP POST, try to pull out the relevant information.
