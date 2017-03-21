@@ -9,5 +9,31 @@
 	{% if user.is_authenticated %}
 		Welcome back, {{ user.username }}<br />
 	{% endif %}
-	<img src="{% static "images/cir01468.jpg" %}" alt="{{ trampoline.trampolineID }}" />
+
+
+<div class="row">
+                <div class="12u">
+                    <h1>It's Spring-time!</h1>
+                    
+                    <p>No matter what kind of trampolining experience you're looking for, we've got you covered.</p>
+                                        If you thought geometry in school was useless, get ready to be proven wrong!
+                    <p>
+                    We've got <strong>rounds</strong>. We've got <strong>squares</strong>. We've got <strong>roundsquares.</strong></p>
+                </div>
+</div>
+            <div class="row">
+                <div class="4u">
+                        <img style="width:90%;" src="{% static "images/cir01468.jpg" %}" alt="{{ trampoline.trampolineID }}" />
+
+                </div>
+                <div class="4u">
+                        <img style="width:90%;" src="{% static "images/per12345.jpg" %}" alt="{{ trampoline.trampolineID }}" />
+
+                </div>
+                <div class="4u">
+                        <img style="width:90%;" src="{% static "images/rec12579.jpg" %}" alt="{{ trampoline.trampolineID }}" />
+
+                </div>
+
+            </div>
 {% endblock %}
