@@ -7,24 +7,24 @@ django.setup()
 from springtime.models import UserProfile, Review, Trampoline, Booking, Category
 
 def populate():
-    
+
 #Trampoline categories, ID, broken or not
     Performance_Tramp = [
-    {"trampolineID": "per12345", 
+    {"trampolineID": "per12345",
 	 "broken": False},
-    {"trampolineID": "per54321", 
+    {"trampolineID": "per54321",
 	 "broken": True}]
 
     Circular_Tramp = [
-    {"trampolineID": "cir02468", 
+    {"trampolineID": "cir02468",
 	 "broken": False},
-    {"trampolineID": "cir01468", 
+    {"trampolineID": "cir01468",
 	 "broken": False}]
 
     Rectangular_Tramp = [
-	{"trampolineID": "rec13579", 
+	{"trampolineID": "rec13579",
 	 "broken": True},
-	{"trampolineID": "rec12579", 
+	{"trampolineID": "rec12579",
 	 "broken": False}]
 
 #Creating main tramppoline categories
@@ -32,24 +32,24 @@ def populate():
     {"name": "Performance","trampoline":Performance_Tramp},
     {"name": "Rectangular", "trampoline":Rectangular_Tramp},
     {"name": "Circular", "trampoline": Circular_Tramp}]
-        
 
-#Reviews, not including username or rating 
+
+#Reviews, not including username or rating
     Reviews = [
-	{"content": "Easy booking, lots of fun!"}, 
+	{"content": "Easy booking, lots of fun!"},
 	{"content": "Best day of my life!"},
-	{"content": "Will come back!"}, 
+	{"content": "Will come back!"},
 	{"content": "I broke my face, but the proffesional team at Soring Time took good care of me. My face is recovering."},
-	{"content": "Worst experience of my life"}, 
+	{"content": "Worst experience of my life"},
 	{"content": "I didn't want my kids back, could you keep them please?"}]
 
     for cat in Category:
-        c=add_cat(cat["name"])  
+        c=add_cat(cat["name"])
         for tramp in cat["trampoline"]:
             add_tramp(tramp["trampolineID"],tramp["broken"], c)
 
 
-# Print out the categories we have added 
+# Print out the categories we have added
 for c in Category.objects.all():
     for p in Trampoline.objects.filter(category=c):
         print ("- {0} - {1}".format(str(c), str(p)))

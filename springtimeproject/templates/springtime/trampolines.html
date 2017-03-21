@@ -5,17 +5,13 @@
     Our trampolines
 {% endblock %}
 {% block body_block %}
-
     {% if categories %}
         {% for category in categories %}
             <a href="/springtime/category/{{ category.slug }}">{{ category.name }}</a>
         {% endfor %}
-        {% for category in categories %}
-            <button onclick="/springtime/category/{{ category.slug }}">filter by {{ category.name }}</button>
-        {% endfor %}
-
+        </br>
             {% for trampoline in trampolines %}
-                <img src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
+                <img style="width:25%;" src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
             {% endfor %}
     {% else %}
         <strong>There are no categories.</strong>

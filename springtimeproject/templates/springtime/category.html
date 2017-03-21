@@ -10,7 +10,7 @@
     <h1>{{ category.name }}</h1>
         {% if trampolines %}
             {% for trampoline in trampolines %}
-            <img src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
+            <img style="width:40%;" src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
             {% endfor %}
         {% else %}
         <strong>No pages currently in category.</strong>
