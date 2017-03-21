@@ -1,2 +1,28 @@
 {% extends 'springtime/main.html' %}
 {% load staticfiles %}
+
+{% block title_block %}
+	Contact Us
+{% endblock %}
+
+{% block body_block %}
+	<img src="{% static 'images/phone.jpeg' %}" 
+				alt="Picture of phone" />
+
+	<h1>Springtime is the leading provider of trampolining services in the UK, with our centre being visited by over 1000 jumping enthusiasts every day!</h1>
+	<div>
+		<br />
+		<p> ▪	Book a session online or on the phone today! </p> 
+		<p> ▪	Choose from a range of trampolines, including oval and rectangular shapes! </p> 
+		<p> ▪	We’d love to hear about your experiences - pick a category to read and leave your own reviews! </p>
+	</div>
+
+	<div>
+		<h5>Contact</h5>
+		<p> Tel: 0141 123 4567</p>
+		<p> Email: springtime@gmail.com </p>
+		<h5>Headquarters</h5>
+		<p> Boyd Orr 706, 175 University Avenue, G12 8PW </p>
+	</div>
+{% endblock %}
+

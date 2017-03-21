@@ -129,3 +129,6 @@ def account(request):
 def bookings(request):
 	return render(request, 'springtime/bookings.html', {})
 
+def contact_us(request):
+	return render(request, 'springtime/contact_us.html', {})
+

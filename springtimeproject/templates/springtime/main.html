@@ -29,7 +29,7 @@
             <nav id="nav">
                 <ul>
                     <!-- For the moment, Contact Us and Our Trampolines redirect to index -->
-                    <li><a href="{% url 'index' %}">Contact Us</a></li>
+                    <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
                     <li><a href="{% url 'trampolines' %}">Our Trampolines</a></li>
 	{% if user.is_authenticated %}
         <li><a href ="{% url 'account' %}">My Account</a></li>
