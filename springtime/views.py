@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from springtime.forms import UserForm
-from springtime.models import Trampoline
-from springtime.models import Category
+from springtime.forms import UserForm, ReviewForm
+from springtime.models import Trampoline, Category, Review
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -108,6 +107,23 @@ def user_login(request):
 		# The request is not a HTTP POST, so display the login form.
 	else:
 		return render(request, 'registration/login.html', {})
+
+def add_review(request):
+    form = ReviewForm
+    reviews = Review.objects.all()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+
+            return index(request)
+
+        else:
+            print(form.errors)
+
+    return render(request, 'springtime/add_review.html', {'form': form, 'reviews' : reviews})
+
 
 @login_required
 def user_logout(request):

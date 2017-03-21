@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from springtime.models import UserProfile
+from springtime.models import UserProfile, Review
 
 class UserForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput())
@@ -8,5 +8,14 @@ class UserForm(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = ('username', 'email', 'password')
+
+class ReviewForm(forms.ModelForm):
+    content = forms.CharField(max_length=300,
+                                help_text="Tell us what you thought:")
+    rating = forms.IntegerField(help_text="Give a rating:")
+
+    class Meta:
+        model = Review
+        fields = ('content', 'rating')
 
 

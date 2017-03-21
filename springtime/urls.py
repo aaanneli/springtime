@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^contact_us/$', views.contact_us, name='contact_us'),
     url(r'^my_account/$', views.account, name='account'),
     url(r'^trampolines/$', views.trampolines, name='trampolines'),
+    url(r'^add_review/$', views.add_review, name='add_review'),
     url(r'^category/(?P<category_name_slug>[\w\-]+)/$',
         views.show_category, name='show_category'),
 ]

@@ -1,0 +1,33 @@
+{% extends 'springtime/main.html' %}
+
+{% block body_block %}
+{% if user.is_authenticated %}
+    <h1>Leave a review</h1>
+    <div>
+        <form id="review_form" method="post" action="/springtime/add_review/">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+        <input type="submit" name="submit" value="Create Review" />
+        </form>
+    </div>
+{% else %}
+    <strong>You need to be signed in to leave a review.</strong>
+{% endif %}
+<hr>
+<hr>
+    {% if reviews %}
+        {% for review in reviews %}
+        <strong> {{ review.time }}: {{ review.rating }} star(s) </strong> </br>
+            {{ review.content }} </br> </br>
+        {% endfor %}
+    {% else %}
+        There are currently no reviews
+    {% endif %}
+{% endblock %}
