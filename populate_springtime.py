@@ -15,23 +15,23 @@ def populate():
     {"trampolineID": "per54321",
 	 "broken": True}]
 
-    Circular_Tramp = [
-    {"trampolineID": "cir02468",
-	 "broken": False},
-    {"trampolineID": "cir01468",
-	 "broken": False}]
-
     Rectangular_Tramp = [
 	{"trampolineID": "rec13579",
 	 "broken": True},
 	{"trampolineID": "rec12579",
 	 "broken": False}]
 
+    Circular_Tramp = [
+    {"trampolineID": "cir02468",
+	 "broken": False},
+    {"trampolineID": "cir01468",
+	 "broken": False}]
+
 #Creating main tramppoline categories
     Category = [
     {"name": "Performance","trampoline":Performance_Tramp},
-    {"name": "Rectangular", "trampoline":Rectangular_Tramp},
-    {"name": "Circular", "trampoline": Circular_Tramp}]
+    {"name": "Rectangular", "trampoline": Rectangular_Tramp},
+    {"name": "Circular", "trampoline":Circular_Tramp}]
 
 
 #Reviews, not including username or rating
