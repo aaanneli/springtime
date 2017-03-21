@@ -34,19 +34,24 @@ def populate():
     {"name": "Circular", "trampoline":Circular_Tramp}]
 
 
-#Reviews, not including username or rating
+#Reviews, not including username
     Reviews = [
-	{"content": "Easy booking, lots of fun!"},
-	{"content": "Best day of my life!"},
-	{"content": "Will come back!"},
-	{"content": "I broke my face, but the proffesional team at Soring Time took good care of me. My face is recovering."},
-	{"content": "Worst experience of my life"},
-	{"content": "I didn't want my kids back, could you keep them please?"}]
+    {"revNumber": 9876543210, "content": "Easy booking, lots of fun!", "rating": 5},
+    {"revNumber": 8765432109, "content": "Best day of my life!", "rating": 5},
+    {"revNumber": 7654321098, "content": "Will come back!", "rating": 5},
+    {"revNumber": 6543210987,
+     "content": "I broke my face, but the professional team at Spring Time took good care of me. My face is recovering.", "rating": 5},
+    {"revNumber": 5432109876, "content": "Worst experience of my life", "rating": 1},
+    {"revNumber": 4321098765, "content": "I didn't want my kids back, could you keep them please?", "rating": 3}]
 
     for cat in Category:
         c=add_cat(cat["name"])
         for tramp in cat["trampoline"]:
             add_tramp(tramp["trampolineID"],tramp["broken"], c)
+
+    for review in Reviews:
+        r = add_review(review["revNumber"] , review["content"], review["rating"])
+
 
 
 # Print out the categories we have added
@@ -54,9 +59,9 @@ for c in Category.objects.all():
     for p in Trampoline.objects.filter(category=c):
         print ("- {0} - {1}".format(str(c), str(p)))
 
-def add_review(revNumber, time, userID, content, rating):
+def add_review(revNumber, content, rating):
     print "adding review"
-    r = Review.objects.get_or_create(review=revNumber, content=content)[0]
+    r = Review.objects.get_or_create(revNumber=revNumber, content=content, rating=rating)[0]
     r.content=content
     r.rating=rating
     r.save()

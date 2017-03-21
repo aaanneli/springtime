@@ -57,7 +57,7 @@ class Booking(models.Model):
 class Review(models.Model):
     revNumber = models.IntegerField(primary_key = True, unique = True)
     time = models.DateField(auto_now=True)
-    userID = models.ForeignKey(User)
+#    userID = models.ForeignKey(User)
     content = models.CharField(max_length=120)
     rating = models.IntegerField(null = False)
 
