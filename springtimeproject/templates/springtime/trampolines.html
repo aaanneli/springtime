@@ -7,13 +7,16 @@
 {% block body_block %}
 
     {% if categories %}
-        <ul>
-            {% for category in categories %}
-            <li>
+        {% for category in categories %}
             <a href="/springtime/category/{{ category.slug }}">{{ category.name }}</a>
-            </li>
+        {% endfor %}
+        {% for category in categories %}
+            <button onclick="/springtime/category/{{ category.slug }}">filter by {{ category.name }}</button>
+        {% endfor %}
+
+            {% for trampoline in trampolines %}
+                <img src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
             {% endfor %}
-        </ul>
     {% else %}
         <strong>There are no categories.</strong>
     {% endif %}

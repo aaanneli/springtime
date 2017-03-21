@@ -7,8 +7,7 @@
 
 {% block body_block %}
 	{% if user.is_authenticated %}
-		Welcome back, {{ user.username }}
+		Welcome back, {{ user.username }}<br />
 	{% endif %}
-	<br /><strong>Showroom:</strong> <br />
-	insert favourite trampolines here
+	<img src="{% static "images/rec12579.jpg" %}" alt="{{ trampoline.trampolineID }}" />
 {% endblock %}

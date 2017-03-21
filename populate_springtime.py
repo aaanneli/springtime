@@ -30,8 +30,8 @@ def populate():
 #Creating main tramppoline categories
     Category = [
     {"name": "Performance","trampoline":Performance_Tramp},
-    {"name": "Rectangular", "trampoline":Circular_Tramp},
-    {"name": "Circular", "trampoline": Rectangular_Tramp}]
+    {"name": "Rectangular", "trampoline":Rectangular_Tramp},
+    {"name": "Circular", "trampoline": Circular_Tramp}]
         
 
 #Reviews, not including username or rating 

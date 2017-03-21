@@ -9,16 +9,14 @@
     {% if category %}
     <h1>{{ category.name }}</h1>
         {% if trampolines %}
-        <ul>
             {% for trampoline in trampolines %}
-            <li>{{ trampoline.trampolineID }}</li>
+            <img src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
             {% endfor %}
-        </ul>
         {% else %}
         <strong>No pages currently in category.</strong>
         {% endif %}
     {% else %}
         The specified category does not exist!
     {% endif %}
-    
+
 {% endblock %}

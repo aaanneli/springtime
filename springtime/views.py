@@ -60,7 +60,9 @@ def register(request):
 def trampolines(request):
     context_dict = {}
     categories = Category.objects.all()
-    context_dict['categories'] = categories
+    trampolines = Trampoline.objects.all()
+    context_dict ['categories'] = categories
+    context_dict ['trampolines'] = trampolines
     return render(request, 'springtime/trampolines.html', context_dict)
 
 def show_category(request, category_name_slug):
