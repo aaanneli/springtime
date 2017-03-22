@@ -4,6 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 		 			      'springtimeproject.s
 import django
 django.setup()
 
+from datetime import datetime
 from django.contrib.auth.models import User
 from springtime.models import UserProfile, Review, Trampoline, Booking, Category
 
@@ -53,14 +54,19 @@ def populate():
     {"userID": barack, "revNumber": 5432109876, "content": "Worst experience of my life", "rating": 1},
     {"userID": hilary, "revNumber": 4321098765, "content": "I didn't want my kids back, could you keep them please?", "rating": 3}]
 
+    tramp_list = []
     for cat in Category:
         c=add_cat(cat["name"])
         for tramp in cat["trampoline"]:
-            add_tramp(tramp["trampolineID"],tramp["broken"], c)
+            tramp_list.append(add_tramp(tramp["trampolineID"],tramp["broken"], c))
 
     for review in Reviews:
         r = add_review(review["userID"], review["revNumber"] , review["content"], review["rating"])
 
+    add_booking(hilary, 4321098765,  tramp_list[0], datetime.now(), datetime.now())
+    add_booking(donald, 8765432109,  tramp_list[3], datetime.now(), datetime.now())
+    add_booking(barack, 5432109876,  tramp_list[4], datetime.now(), datetime.now())
+    add_booking(vladimir, 9876543210,  tramp_list[5], datetime.now(), datetime.now())
 
 # Print out the categories we have added
 for c in Category.objects.all():
@@ -91,7 +97,7 @@ def add_cat(name):
     return c
 
 def add_user(username, password, is_staff, is_admin):
-    print "adding user"
+    print "\tadding user"
     u=User.objects.get_or_create(username=username)[0]
     u.set_password(password)
     u.save()
@@ -100,6 +106,16 @@ def add_user(username, password, is_staff, is_admin):
     up.is_admin=is_admin
     up.save()
     return u
+
+def add_booking(userID, refNumber, trampolineID, startTime, endTime):
+    print "adding bookings"
+    b=Booking.objects.get_or_create(refNumber=refNumber)[0]
+    b.userID.add(userID)
+    b.trampolineID.add(trampolineID)
+    b.startTime=startTime
+    b.endTime=endTime
+    b.save()
+    return b
 
 
 #Start execution here!
