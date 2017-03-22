@@ -28,12 +28,13 @@ def populate():
     {"trampolineID": "cir01468",
 	 "broken": False}]
 
-    Users=[
-        {"username": "TheresaMay", "password": "123456", "is_staff": True, "is_admin": False},
-        {"username": "NicolaSturgeon", "password": "123456", "is_staff": False, "is_admin": False},
-        {"username": "DavidCameron", "password": "123456", "is_staff": False, "is_admin": False},
-        {"username": "DonaldTrump", "password": "123456", "is_staff": False, "is_admin": False},
-        {"username": "VladimirPutin", "password": "123456", "is_staff": True, "is_admin": True}]
+    theresa = add_user("TheresaMay", "123456", True, False)
+    nicola = add_user("NicolaSturgeon", "123456", False, False)
+    david = add_user("DavidCameron", "123456", False, False)
+    donald = add_user("DonaldTrump", "123456", False, False)
+    vladimir = add_user("VladimirPutin", "123456", True, True)
+    barack = add_user("BarackObama", "123456", False, False)
+    hilary = add_user("HilaryClinton","123456", False, False)
 
 #Creating main tramppoline categories
     Category = [
@@ -44,24 +45,21 @@ def populate():
 
 #Reviews, not including username
     Reviews = [
-    {"revNumber": 9876543210, "content": "Easy booking, lots of fun!", "rating": 5},
-    {"revNumber": 8765432109, "content": "Best day of my life!", "rating": 5},
-    {"revNumber": 7654321098, "content": "Will come back!", "rating": 5},
-    {"revNumber": 6543210987,
+    {"userID": theresa, "revNumber": 9876543210, "content": "Easy booking, lots of fun!", "rating": 5},
+    {"userID": theresa, "revNumber": 8765432109, "content": "Best day of my life!", "rating": 5},
+    {"userID": nicola, "revNumber": 7654321098, "content": "Will come back!", "rating": 5},
+    {"userID": david, "revNumber": 6543210987,
      "content": "I broke my face, but the professional team at Spring Time took good care of me. My face is recovering.", "rating": 5},
-    {"revNumber": 5432109876, "content": "Worst experience of my life", "rating": 1},
-    {"revNumber": 4321098765, "content": "I didn't want my kids back, could you keep them please?", "rating": 3}]
+    {"userID": barack, "revNumber": 5432109876, "content": "Worst experience of my life", "rating": 1},
+    {"userID": hilary, "revNumber": 4321098765, "content": "I didn't want my kids back, could you keep them please?", "rating": 3}]
 
     for cat in Category:
         c=add_cat(cat["name"])
         for tramp in cat["trampoline"]:
             add_tramp(tramp["trampolineID"],tramp["broken"], c)
 
-    for user in Users:
-        u=add_user(user["username"], user["password"], user["is_staff"], user["is_admin"])
-
     for review in Reviews:
-        r = add_review(review["revNumber"] , review["content"], review["rating"])
+        r = add_review(review["userID"], review["revNumber"] , review["content"], review["rating"])
 
 
 # Print out the categories we have added
@@ -69,11 +67,12 @@ for c in Category.objects.all():
     for p in Trampoline.objects.filter(category=c):
         print ("- {0} - {1}".format(str(c), str(p)))
 
-def add_review(revNumber, content, rating):
+def add_review(userID, revNumber, content, rating):
     print "adding review"
-    r = Review.objects.get_or_create(revNumber=revNumber, content=content, rating=rating)[0]
+    r = Review.objects.get_or_create(userID=userID, revNumber=revNumber, content=content, rating=rating)[0]
     r.content=content
     r.rating=rating
+    r.userID=userID
     r.save()
     return r
 
