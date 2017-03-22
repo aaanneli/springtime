@@ -57,11 +57,14 @@
                 <div class="2u">
                 </div>
                 <div class="8u">
-                <div>
-                     <a href="{% url 'contact_us' %}">Contact Us</a>
-                     <a href="{% url 'auth_password_change' %}">Change Password</a>
-                </div>
                     <div id="copyright">
+                                        <div>
+                     <a class="footLinks" href="{% url 'contact_us' %}"><strong>Contact Us</strong></a>
+                                            	{% if user.is_authenticated %}
+                                            <span>&nbsp; &nbsp;</span>
+                     <a class="footLinks" href="{% url 'auth_password_change' %}"><strong>Change Password</strong></a>
+                                            {% endif %}
+                </div>
                         &copy; Spring Time 2017, Team B. Very few rights, if any, reserved. CSS Framework: <a href="https://html5up.net/license">HTML5up.net</a>
                     </div>
                 </div>
