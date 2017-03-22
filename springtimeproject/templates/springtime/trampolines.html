@@ -7,11 +7,18 @@
 {% block body_block %}
     {% if categories %}
         {% for category in categories %}
+            <span style="margin-left:7em"></span>
             <a href="/springtime/category/{{ category.slug }}"><button type="button">{{ category.name }}</button></a>
+            <span style="margin-left:7em"></span>
+
         {% endfor %}
+        <br>
         </br>
             {% for trampoline in trampolines %}
+                <span style="margin-left:4em"></span>
                 <img style="width:25%;" src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
+                <span style="margin-left:2em"></span>
+
             {% endfor %}
     {% else %}
         <strong>There are no categories.</strong>
