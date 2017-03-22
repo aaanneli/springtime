@@ -6,14 +6,18 @@
 {% endblock %}
 {% block body_block %}
     {% if categories %}
+    <hr>
+    <strong>Select a category: </strong>
         {% for category in categories %}
-            <span style="margin-left:7em"></span>
+            <span style="margin-left:4em"></span>
             <a href="/springtime/category/{{ category.slug }}"><button type="button">{{ category.name }}</button></a>
-            <span style="margin-left:7em"></span>
+            <span style="margin-left:4em"></span>
 
         {% endfor %}
-        <br>
-        </br>
+    <hr>
+        <div align=center>
+        <strong>Showing all trampolines:</strong> </br></br>
+        </div>
             {% for trampoline in trampolines %}
                 <span style="margin-left:4em"></span>
                 <img style="width:25%;" src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
@@ -23,6 +27,5 @@
     {% else %}
         <strong>There are no categories.</strong>
     {% endif %}
-
 
 {% endblock %}

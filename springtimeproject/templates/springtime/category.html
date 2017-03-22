@@ -7,7 +7,11 @@
 {% block body_block %}
 
     {% if category %}
-    <h1>{{ category.name }}</h1>
+    <div align="center">
+    <h1 align="centre"><strong>All {{ category.name }} Trampolines:</strong></h1>
+    </div>
+    </br>
+    <div align="center">
         {% if trampolines %}
             {% for trampoline in trampolines %}
             <img style="width:40%;" src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
@@ -15,6 +19,7 @@
         {% else %}
         <strong>No pages currently in category.</strong>
         {% endif %}
+    </div>
     {% else %}
         The specified category does not exist!
     {% endif %}
