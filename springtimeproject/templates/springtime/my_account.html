@@ -1,7 +1,7 @@
 {% extends 'springtime/main.html' %}
 
 {% block body_block %}
-	Welcome back, {{ user.username }}!
+	<strong>Welcome back, {{ user.username }}!</strong>
 
 	<li><a href="{% url 'auth_password_change' %}">Change Password</a></li>
 	<li><a href="{% url 'bookings' %}">My Bookings</a></li>

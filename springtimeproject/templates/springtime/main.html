@@ -29,11 +29,11 @@
             <nav id="nav">
                 <ul>
                     <!-- For the moment, Contact Us and Our Trampolines redirect to index -->
-                    <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                    
                     <li><a href="{% url 'trampolines' %}">Our Trampolines</a></li>
                     <li><a href="/springtime/add_review/">Reviews</a></li>
 	{% if user.is_authenticated %}
-        <li><a href ="{% url 'account' %}">My Account</a></li>
+        <li><a href="{% url 'bookings' %}">Bookings</a></li>
 		<li><a href="{% url 'auth_logout' %}?next=/springtime/">Log out</a></li>
 	{% else %}
 		<li><a href="{% url 'registration_register' %}">Register</a></li>
@@ -57,6 +57,10 @@
                 <div class="2u">
                 </div>
                 <div class="8u">
+                <div>
+                     <a href="{% url 'contact_us' %}">Contact Us</a>
+                     <a href="{% url 'auth_password_change' %}">Change Password</a>
+                </div>
                     <div id="copyright">
                         &copy; Spring Time 2017, Team B. Very few rights, if any, reserved. CSS Framework: <a href="https://html5up.net/license">HTML5up.net</a>
                     </div>
