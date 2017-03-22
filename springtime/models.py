@@ -28,6 +28,9 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural= 'Categories'
 
+    def __str__(self):
+        return self.name
+
     def __unicode__(self):
         return self.name
 
@@ -40,18 +43,21 @@ class Trampoline(models.Model):
         return self.trampolineID
 
     def __unicode__(self):
-
         return self.trampolineID
 
 class Booking(models.Model):
     refNumber = models.IntegerField(primary_key = True, unique = True)
-    startTime = models.DateTimeField(null = False)
-    endTime = models.DateTimeField(null = False)
+    startTime = models.DateTimeField(null = False, auto_now=True)
+    endTime = models.DateTimeField(null = False, auto_now=True)
     trampolineID = models.ManyToManyField(Trampoline)
     userID = models.ManyToManyField(User)
 
+    def __str__(self):
+        return str(self.refNumber)
+
     def __unicode__(self):
-        return self.refNumber
+        return unicode(self.refNumber)
+
 
 
 class Review(models.Model):
@@ -66,5 +72,3 @@ class Review(models.Model):
 
     def __unicode__(self):
 		return self.content
-
-#Trying to get git to work for me :)
