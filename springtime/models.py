@@ -66,3 +66,5 @@ class Review(models.Model):
 
     def __unicode__(self):
 		return self.content
+
+#Trying to get git to work for me :)
