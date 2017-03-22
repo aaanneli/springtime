@@ -155,9 +155,6 @@ def password_change(request):
 def password_change_done(request):
 	return render(request, 'registration/password_change_done.html', {})
 
-def account(request):
-	return render(request, 'springtime/my_account.html', {})
-
 def contact_us(request):
 	return render(request, 'springtime/contact_us.html', {})
 

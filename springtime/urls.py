@@ -12,7 +12,6 @@ urlpatterns = [
     url(r'^accounts/password/change/done/$', views.password_change_done, name='password_change_done'),
     url(r'^bookings/$', views.bookings, name='bookings'),
     url(r'^contact_us/$', views.contact_us, name='contact_us'),
-    url(r'^my_account/$', views.account, name='account'),
     url(r'^trampolines/$', views.trampolines, name='trampolines'),
     url(r'^add_review/$', views.add_review, name='add_review'),
     url(r'^category/(?P<category_name_slug>[\w\-]+)/$',
