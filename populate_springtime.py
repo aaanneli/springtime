@@ -4,6 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 		 			      'springtimeproject.s
 import django
 django.setup()
 
+from django.contrib.auth.models import User
 from springtime.models import UserProfile, Review, Trampoline, Booking, Category
 
 def populate():
@@ -27,6 +28,13 @@ def populate():
     {"trampolineID": "cir01468",
 	 "broken": False}]
 
+    Users=[
+        {"username": "TheresaMay", "password": "123456", "is_staff": True, "is_admin": False},
+        {"username": "NicolaSturgeon", "password": "123456", "is_staff": False, "is_admin": False},
+        {"username": "DavidCameron", "password": "123456", "is_staff": False, "is_admin": False},
+        {"username": "DonaldTrump", "password": "123456", "is_staff": False, "is_admin": False},
+        {"username": "VladimirPutin", "password": "123456", "is_staff": True, "is_admin": True}]
+
 #Creating main tramppoline categories
     Category = [
     {"name": "Performance","trampoline":Performance_Tramp},
@@ -49,9 +57,11 @@ def populate():
         for tramp in cat["trampoline"]:
             add_tramp(tramp["trampolineID"],tramp["broken"], c)
 
+    for user in Users:
+        u=add_user(user["username"], user["password"], user["is_staff"], user["is_admin"])
+
     for review in Reviews:
         r = add_review(review["revNumber"] , review["content"], review["rating"])
-
 
 
 # Print out the categories we have added
@@ -80,6 +90,18 @@ def add_cat(name):
     c = Category.objects.get_or_create(name=name)[0]
     c.save()
     return c
+
+def add_user(username, password, is_staff, is_admin):
+    print "adding user"
+    u=User.objects.get_or_create(username=username)[0]
+    u.set_password(password)
+    u.save()
+    up= UserProfile.objects.get_or_create(user=u)[0]
+    up.is_staff=is_staff
+    up.is_admin=is_admin
+    up.save()
+    return u
+
 
 #Start execution here!
 if __name__ == '__main__':
