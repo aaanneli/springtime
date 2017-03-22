@@ -1,7 +1,6 @@
 from django.test import TestCase
 from rango.models import Category
 
-# Create your tests here.
 class LinkTests(TestCase):
 	# Test links are functioning.
 
@@ -33,10 +32,10 @@ class LinkTests(TestCase):
 class templateTests(TestCase):
 	#Tests pages are using templates.
 
-	def test_myAccount_using_template(self):
+	def test_bookings_using_template(self):
 		# Check My Account page is using a template.
 		response = self.client.get(reverse('my_account'))
-		self.assertTemplateUsed(response, 'springtime/my_account.html')
+		self.assertTemplateUsed(response, 'springtime/bookings.html')
 
 	def test_trampolines_using_template(self):
 		# Check Trampolines page is using a template.
@@ -47,6 +46,35 @@ class templateTests(TestCase):
 		#Check to make sure index is using a template.
 		response = self.client.get(reverse('index'))
 		self.assertTemplateUsed(response, 'springtime/index.html')
+
+	def test_contactUs_using_template(self):
+		# Check to make sure Contact Us is using a template.
+		response = self.client.get(reverse('contact_us'))
+		self.assertTemplateUsed(response, 'springtime/contact_us.html')
+
+	def test_reviews_using_template(self):
+		# Check to make sure reviews using template.
+		response = self.client.get(reverse('add_review'))
+		self.assertTemplateUsed(response, 'springtime/add_review.html')
+
+class FormTests(TestCase):
+
+	def 
+
+class ImageTests(TestCase):
+
+	def test_index_contains_image(self):
+		response = self.client.get(reverse('index'))
+		self.assertIn('img src="/static/images/', response.content)
+
+	def test_trampolines_contains_image(self):
+		response = self.client.get(reverse('trampolines'))
+		self.assertIn('img src="/static/images/', response.content)
+
+	def test_contactUs_contains_image(self):
+		response = self.client.get(reverse('contact_us'))
+		self.assertIn('img src="/static/images', response.content)
+
 
 class ModelTests(TestCase):
 

@@ -139,7 +139,8 @@ def bookings(request):
             
     return render(request, 'springtime/bookings.html', {'form': form})
 
-
+def user_registered(request):
+	return render(request, 'springtime/registration_complete.html', {})
 
 @login_required
 def user_logout(request):
