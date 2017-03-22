@@ -12,7 +12,7 @@ class UserForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     content = forms.CharField(max_length=300,
                                 help_text="Tell us what you thought:")
-    rating = forms.IntegerField(help_text="Give a rating:")
+    rating = forms.IntegerField(help_text="Give a rating:", min_value=1, max_value=5)
 
     class Meta:
         model = Review
