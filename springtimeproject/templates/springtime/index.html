@@ -36,19 +36,4 @@
 
             </div>
 
-<form>
-    
-    </br>
-
-</br>
-[Temporary Date-Time]
-</br>
-
-  Please pick your desired date and time:
-</br>
-    {% now "Y-m-j" as current_date %} <!-- Format python's datetime.now() as Year-month-day, so we don't accept time-travelers -->
-
-
-<input type="date" name="d" min="{{ current_date }}">
-</form>
 {% endblock %}

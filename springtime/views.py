@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from springtime.forms import UserForm, ReviewForm
+from springtime.forms import UserForm, ReviewForm, BookingForm
 from springtime.models import Trampoline, Category, Review
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -125,6 +125,22 @@ def add_review(request):
     return render(request, 'springtime/add_review.html', {'form': form, 'reviews' : reviews})
 
 
+def bookings(request):
+    form = BookingForm
+    
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print(form.errors)
+            
+    return render(request, 'springtime/bookings.html', {'form': form})
+
+
+
 @login_required
 def user_logout(request):
 	logout(request)
@@ -141,9 +157,6 @@ def password_change_done(request):
 
 def account(request):
 	return render(request, 'springtime/my_account.html', {})
-
-def bookings(request):
-	return render(request, 'springtime/bookings.html', {})
 
 def contact_us(request):
 	return render(request, 'springtime/contact_us.html', {})
