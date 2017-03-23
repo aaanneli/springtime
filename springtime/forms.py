@@ -14,13 +14,12 @@ class ReviewForm(forms.ModelForm):
     content = forms.CharField(max_length=300,
                                 help_text="Tell us about your experience:")
     rating = forms.IntegerField(help_text="Rate your experience:", min_value=1, max_value=5)
-    #userID = User
+    userID = User
     reviews = Review.objects.all()
 
     class Meta:
         model = Review
-        #fields = ('userID', 'content', 'rating')
-        fields = ('content', 'rating')
+        fields = ('userID', 'content', 'rating')
 
 
 class BookingForm(forms.ModelForm):
