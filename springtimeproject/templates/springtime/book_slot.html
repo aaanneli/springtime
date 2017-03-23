@@ -1,0 +1,28 @@
+{% extends 'springtime/main.html' %}
+
+{% block body_block %}
+	<strong>Welcome back, {{ user.username }}! &nbsp; You've selected: {{chosendate}}</strong>
+
+</br>
+
+{{existingtimes}}
+
+<Strong>The available timeslots on that date are:</Strong>
+
+<form id="booking_form" method="post" action="/springtime/bookings/">
+
+<div class ="row">
+
+<div class = "4u">
+     {% csrf_token %}    
+    {{selectslotform}}
+</div>
+
+ </div>
+
+
+<input type="submit" name="submit" value="Request Booking">
+</form>
+
+
+{% endblock %}

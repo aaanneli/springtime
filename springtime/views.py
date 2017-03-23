@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from springtime.forms import UserForm, ReviewForm, BookingForm
-from springtime.models import Trampoline, Category, Review, Booking
+from springtime.forms import UserForm, ReviewForm, SelectDateForm, SelectSlotForm
+from springtime.models import Trampoline, Category, Review, Booking, SelectDate
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -129,30 +129,46 @@ def add_review(request):
 
 @login_required
 def bookings(request):
-    form = BookingForm
-    bookings = Booking.objects.all()
+    form = SelectDateForm
 
     if request.method == 'POST':
-        form = BookingForm(request.POST)
+        form = SelectDateForm(request.POST)
 
         if form.is_valid():
             form.save(commit=False)
-            return my_bookings(request, form)
+            return select_timeslot(request, form)
         else:
             print(form.errors)
 
-    return render(request, 'springtime/bookings.html', {'form': form, 'bookings' : bookings})
+    return render(request, 'springtime/bookings.html', {'form': form})
 
-def check_booking(request):
-	year = request.GET["year"]
-	date = request.GET["date"]
-	month = request.GET["month"]
-	
-	return index(request)
-
-def my_bookings(request, form):
+def select_timeslot(request, dateform):
     bookings = Booking.objects.all()
-    return render(request, 'springtime/my_bookings.html', {'bookings' : bookings})
+    Times = []
+    print "Bookings:" 
+    for bking in bookings:
+        print bking.getStartTime()
+        Times.append(bking.getStartTime())
+    print "Times:"
+    print Times
+    print dateform.cleaned_data['date']
+    chosendate = dateform.cleaned_data['date']
+    
+    timeslotform = SelectSlotForm
+    
+    if request.method == 'POST':
+        timeslotform = SelectSlotForm(request.POST)
+
+        if timeslotform.is_valid():
+            timeslotform.save(commit=True)
+            return successful_booking(request, timeslotform)
+        else:
+            print(timeslotform.errors)
+
+    return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'chosendate':chosendate, 'selectslotform':timeslotform, 'existingtimes':Times})
+
+
+
 
 def user_registered(request):
 	return render(request, 'springtime/registration_complete.html', {})

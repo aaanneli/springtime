@@ -29,10 +29,10 @@ class Category(models.Model):
         verbose_name_plural= 'Categories'
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     def __unicode__(self):
-        return self.name
+        return str(self.name)
 
 class Trampoline(models.Model):
     trampolineID = models.CharField(max_length=8, primary_key = True, unique = True)
@@ -45,19 +45,29 @@ class Trampoline(models.Model):
     def __unicode__(self):
         return self.trampolineID
 
-class Booking(models.Model):
-    startTime = models.DateTimeField(null = False, auto_now=True)
-    trampolineID = models.ForeignKey(Trampoline)
-    userID = models.ManyToManyField(User)
     
-    class Meta:
-        unique_together = (("trampolineID", "startTime"))
-
+class SelectDate(models.Model):
     def __str__(self):
-        return str(self.startTime)
+        return str(self.refNumber)
 
     def __unicode__(self):
-        return unicode(self.startTime)
+        return unicode(self.refNumber)
+
+    
+class Booking(models.Model):
+    refNumber = models.IntegerField(primary_key = True, unique = True)
+    startTime = models.DateTimeField(null = False, auto_now=True)
+    trampolineID = models.ManyToManyField(Trampoline)
+    userID = models.ManyToManyField(User)
+    
+    def getStartTime(self):
+        return self.startTime
+
+    def __str__(self):
+        return str(self.refNumber)
+
+    def __unicode__(self):
+        return unicode(self.refNumber)
 
 class Review(models.Model):
     time = models.DateField(auto_now=True)
