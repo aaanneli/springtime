@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^add_review/$', views.add_review, name='add_review'),
     url(r'^category/(?P<category_name_slug>[\w\-]+)/$',
         views.show_category, name='show_category'),
+    url(r'^check_booking/$', views.check_booking, name='check_booking'),
 ]

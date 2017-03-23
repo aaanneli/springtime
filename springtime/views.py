@@ -140,6 +140,12 @@ def bookings(request):
 
     return render(request, 'springtime/bookings.html', {'form': form, 'bookings' : bookings})
 
+def check_booking(request):
+	year = request.GET["year"]
+	date = request.GET["date"]
+	month = request.GET["month"]
+	
+	return index(request)
 
 def my_bookings(request, form):
     bookings = Booking.objects.all()
