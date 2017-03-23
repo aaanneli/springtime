@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 
 def index(request):
@@ -108,19 +109,21 @@ def user_login(request):
 	else:
 		return render(request, 'registration/login.html', {})
 
+@login_required
 def add_review(request):
-    form = ReviewForm
+    form = ReviewForm()
     reviews = Review.objects.all()
     if request.method == 'POST':
         form = ReviewForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
-
-            return index(request)
-
+			review = form.save(commit=False)
+			review.time = datetime.now()
+			review.userID = request.user
+			review.save()
+			return index(request)
         else:
-            print(form.errors)
+		print(form.errors)
 
     return render(request, 'springtime/add_review.html', {'form': form, 'reviews' : reviews})
 

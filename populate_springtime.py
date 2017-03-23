@@ -46,13 +46,12 @@ def populate():
 
 #Reviews, not including username
     Reviews = [
-    {"userID": theresa, "revNumber": 9876543210, "content": "Easy booking, lots of fun!", "rating": 5},
-    #"{"userID": vladimir, "revNumber": 8765432109, "content": "Best day of my life!", "rating": 5},
-    {"userID": nicola, "revNumber": 7654321098, "content": "Will come back!", "rating": 5},
-    {"userID": david, "revNumber": 6543210987,
+    {"userID": theresa, "content": "Easy booking, lots of fun!", "rating": 5},
+    {"userID": nicola, "content": "Will come back!", "rating": 5},
+    {"userID": david,
      "content": "I broke my face, but the professional team at Spring Time took good care of me. My face is recovering.", "rating": 5},
-    {"userID": barack, "revNumber": 5432109876, "content": "Worst experience of my life", "rating": 1},
-    {"userID": hilary, "revNumber": 4321098765, "content": "I didn't want my kids back, could you keep them please?", "rating": 3}]
+    {"userID": barack, "content": "Worst experience of my life", "rating": 1},
+    {"userID": hilary, "content": "I didn't want my kids back, could you keep them please?", "rating": 3}]
 
     tramp_list = []
     for cat in Category:
@@ -61,7 +60,7 @@ def populate():
             tramp_list.append(add_tramp(tramp["trampolineID"],tramp["broken"], c))
 
     for review in Reviews:
-        r = add_review(review["userID"], review["revNumber"] , review["content"], review["rating"])
+        r = add_review(review["userID"] , review["content"], review["rating"])
 
     add_booking(hilary, 4321098765,  tramp_list[0], datetime.now())
     add_booking(donald, 8765432109,  tramp_list[3], datetime.now())
@@ -73,9 +72,9 @@ for c in Category.objects.all():
     for p in Trampoline.objects.filter(category=c):
         print ("- {0} - {1}".format(str(c), str(p)))
 
-def add_review(userID, revNumber, content, rating):
+def add_review(userID, content, rating):
     print "adding review"
-    r = Review.objects.get_or_create(userID=userID, revNumber=revNumber, content=content, rating=rating)[0]
+    r = Review.objects.get_or_create(userID=userID, content=content, rating=rating)[0]
     r.content=content
     r.rating=rating
     r.userID=userID

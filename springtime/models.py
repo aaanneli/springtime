@@ -58,7 +58,6 @@ class Booking(models.Model):
         return unicode(self.refNumber)
 
 class Review(models.Model):
-    revNumber = models.IntegerField(primary_key = True, unique = True)
     time = models.DateField(auto_now=True)
     userID = models.ForeignKey(User)
     content = models.CharField(max_length=120)
