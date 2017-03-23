@@ -16,9 +16,11 @@
         {% endfor %}
     <hr>
             {% for trampoline in trampolines %}
+                {% if trampoline.broken == False %}
                 <span style="margin-left:4em"></span>
                 <img style="width:25%;" src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
                 <span style="margin-left:2em"></span>
+                {% endif %}
 
             {% endfor %}
     {% else %}

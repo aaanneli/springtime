@@ -24,7 +24,7 @@
 <hr>
     {% if reviews %}
         {% for review in reviews %}
-        <strong> {{ review.time }}: {{ review.rating }} star(s) </strong> </br>
+        <strong> {{ review.userID }} on {{ review.time }}: {{ review.rating }} star(s) </strong> </br>
             {{ review.content }} </br> </br>
         {% endfor %}
     {% else %}
