@@ -7,8 +7,10 @@
 {% block body_block %}
 
     {% if category %}
-    </br>
     <div align="center">
+    <h1 align="centre"><strong>All {{ category.name }} Trampolines:</strong></h1>
+    </div>
+    <hr>
         {% if trampolines %}
             {% for trampoline in trampolines %}
             {% if trampoline.broken == False %}
@@ -16,6 +18,7 @@
                 <span style="margin-left:6em"></span>
             {% endif %}
             {% endfor %}
+    <hr>
         {% else %}
         <strong>No pages currently in category.</strong>
         {% endif %}

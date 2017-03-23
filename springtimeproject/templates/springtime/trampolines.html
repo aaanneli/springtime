@@ -7,6 +7,7 @@
 {% block body_block %}
     {% if categories %}
     <hr>
+    </br>
     <strong>Select a category: </strong>
         {% for category in categories %}
             <span style="margin-left:4em"></span>
@@ -15,6 +16,9 @@
 
         {% endfor %}
     <hr>
+        <div align=center>
+        <strong>Showing All Trampolines:</strong></br></br>
+        </div>
             {% for trampoline in trampolines %}
                 {% if trampoline.broken == False %}
                 <span style="margin-left:4em"></span>
