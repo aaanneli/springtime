@@ -48,7 +48,6 @@ class Trampoline(models.Model):
 class Booking(models.Model):
     refNumber = models.IntegerField(primary_key = True, unique = True)
     startTime = models.DateTimeField(null = False, auto_now=True)
-    endTime = models.DateTimeField(null = False, auto_now=True)
     trampolineID = models.ManyToManyField(Trampoline)
     userID = models.ManyToManyField(User)
 
