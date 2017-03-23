@@ -136,7 +136,7 @@ def bookings(request):
         form = BookingForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
+            form.save(commit=False)
             return my_bookings(request, form)
         else:
             print(form.errors)
