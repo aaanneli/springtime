@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from springtime.models import UserProfile, Review, Booking
+from django.utils import timezone
 
 class UserForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput())
@@ -23,7 +24,7 @@ class ReviewForm(forms.ModelForm):
 
 class BookingForm(forms.ModelForm):
     date = forms.DateField(help_text="Choose a date you would like to come for a jump", widget = forms.SelectDateWidget(empty_label=("Choose Year", "Choose Month", "Choose Day"), years=[2017], months={1:"March", 2:"April", 3:"May"}))
-    SLOTS = (('1', '09:00 - 10:00'), ('2', '10:00 - 11:00'), ('0', '11:00 - 12:00'), ('4', '12:00 - 13:00'), ('5', '13:00 - 14:00'), ('0', '14:00 - 15:00'), ('7', '15:00 - 16:00'), ('6', '16:00 - 17:00'))
+    SLOTS = (('1', '09:00 - 10:00'), ('2', '10:00 - 11:00'), ('0', '11:00 - 12:00'), ('4', '12:00 - 13:00'), ('5', '13:00 - 14:00'), ('0', '14:00 - 15:00'), ('7', '15:00 - 16:00'), ('6', '16:00 - 17:00')) # '0' means unavailable
     slots = forms.ChoiceField(widget=forms.RadioSelect, choices=SLOTS)
 
     class Meta:

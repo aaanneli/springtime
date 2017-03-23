@@ -1,0 +1,32 @@
+{% extends 'springtime/main.html' %}
+
+
+{% block body_block %}
+
+
+<h1>Booking successful!</h1>
+
+We'll see you from <strong> 10:00 - 11:00 </strong> on the <strong>25/03/17.</strong> 
+
+</br>
+
+<a class="button-small">Make another booking...</a>
+
+<!--
+    {% if bookings %}
+        {% for booking in bookings %}
+        {% if booking.userID == user.username %}
+        </br> <strong> {{ booking.startTime }} to {{ booking.endTime }} : </strong> </br>
+        Trampoline: {{ booking.trampolineID }} </br>
+        User: {{ booking.userID }} </br>
+        Reference: {{ booking.refNumber }} </br>
+        <hr>
+        {% endif %}
+        {% endfor %}
+    {% else %}
+        There are currently no bookings
+    {% endif %}
+-->
+
+
+{% endblock %}

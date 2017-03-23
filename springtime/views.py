@@ -134,11 +134,16 @@ def bookings(request):
 
         if form.is_valid():
             form.save(commit=True)
-            return index(request)
+            return my_bookings(request, form)
         else:
             print(form.errors)
 
     return render(request, 'springtime/bookings.html', {'form': form, 'bookings' : bookings})
+
+
+def my_bookings(request, form):
+    bookings = Booking.objects.all()
+    return render(request, 'springtime/my_bookings.html', {'bookings' : bookings})
 
 def user_registered(request):
 	return render(request, 'springtime/registration_complete.html', {})

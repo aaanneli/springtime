@@ -3,10 +3,22 @@
 {% block body_block %}
 	<strong>Welcome back, {{ user.username }}!</strong>
 
-<div>
+
+
 <form id="booking_form" method="post" action="/springtime/bookings/">
- {% csrf_token %}    
+
+<div class ="row">
+
+<div class = "4u">
+     {% csrf_token %}    
     {{form.date}}
+    <a class="button" onClick="document.getElementById('timeSlots').style.visibility = 'visible';" > Find times... </a>
+</div>
+
+    
+<div class = "8u">
+    
+<div id ="timeSlots" style="visibility:hidden;">
 {%for radio in form.slots %}
 <div class="radioChoices">
     {% if radio.choice_value != '0' %}
@@ -16,22 +28,15 @@
     {% endif %}
 </div>
 {% endfor %}
-<input type="submit" name="submit" value="Request Booking">
-</form>
     </div>
-<hr>
-<hr>
-    {% if bookings %}
-        {% for booking in bookings %}
-        {% if booking.userID == user.username %}
-        </br> <strong> {{ booking.startTime }} to {{ booking.endTime }} : </strong> </br>
-        Trampoline: {{ booking.trampolineID }} </br>
-        User: {{ booking.userID }} </br>
-        Reference: {{ booking.refNumber }} </br>
-        <hr>
-        {% endif %}
-        {% endfor %}
-    {% else %}
-        There are currently no bookings
-    {% endif %}
+    
+</div>
+
+</div>
+    
+
+<input type="submit" name="submit" value="Request Booking" onclick="alert('Booking successful!')">
+</form>
+
+
 {% endblock %}
