@@ -17,4 +17,19 @@
 <input type="submit" name="submit" value="Request Booking">
 </form>
     </div>
+<hr>
+<hr>
+    {% if bookings %}
+        {% for booking in bookings %}
+        {% if booking.userID == user.username %}
+        </br> <strong> {{ booking.startTime }} to {{ booking.endTime }} : </strong> </br>
+        Trampoline: {{ booking.trampolineID }} </br>
+        User: {{ booking.userID }} </br>
+        Reference: {{ booking.refNumber }} </br>
+        <hr>
+        {% endif %}
+        {% endfor %}
+    {% else %}
+        There are currently no bookings
+    {% endif %}
 {% endblock %}

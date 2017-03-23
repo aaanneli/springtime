@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from springtime.forms import UserForm, ReviewForm, BookingForm
-from springtime.models import Trampoline, Category, Review
+from springtime.models import Trampoline, Category, Review, Booking
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -124,20 +124,21 @@ def add_review(request):
 
     return render(request, 'springtime/add_review.html', {'form': form, 'reviews' : reviews})
 
-
+@login_required
 def bookings(request):
     form = BookingForm
-    
+    bookings = Booking.objects.all()
+
     if request.method == 'POST':
         form = BookingForm(request.POST)
-        
+
         if form.is_valid():
             form.save(commit=True)
             return index(request)
         else:
             print(form.errors)
-            
-    return render(request, 'springtime/bookings.html', {'form': form})
+
+    return render(request, 'springtime/bookings.html', {'form': form, 'bookings' : bookings})
 
 def user_registered(request):
 	return render(request, 'springtime/registration_complete.html', {})
