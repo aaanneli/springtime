@@ -11,8 +11,8 @@ class UserForm(forms.ModelForm):
 
 class ReviewForm(forms.ModelForm):
     content = forms.CharField(max_length=300,
-                                help_text="Tell us what you thought:")
-    rating = forms.IntegerField(help_text="Give a rating:", min_value=1, max_value=5)
+                                help_text="Tell us about your experience:")
+    rating = forms.IntegerField(help_text="Rate your experience:", min_value=1, max_value=5)
 
     class Meta:
         model = Review
@@ -20,8 +20,8 @@ class ReviewForm(forms.ModelForm):
         
         
 class BookingForm(forms.ModelForm):
-    date = forms.DateField(help_text="Date", widget = forms.SelectDateWidget(years=[2017, 2018]))
-    details = forms.CharField(max_length=500, help_text="Do you have any special requirements?")
+    date = forms.DateField(help_text="Chose a date you would like to come for a jump", widget = forms.SelectDateWidget(years=[2017, 2018]))
+    details = forms.CharField(max_length=150, help_text="Please inform us of any special requirements you may have:")
     
     class Meta:
         model = Booking

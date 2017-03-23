@@ -15,9 +15,6 @@
 
         {% endfor %}
     <hr>
-        <div align=center>
-        <strong>Showing all trampolines:</strong> </br></br>
-        </div>
             {% for trampoline in trampolines %}
                 <span style="margin-left:4em"></span>
                 <img style="width:25%;" src="{% static "images/" %}{{ trampoline.trampolineID }}.jpg" alt="{{ trampoline.trampolineID }}" />
