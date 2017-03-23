@@ -46,19 +46,18 @@ class Trampoline(models.Model):
         return self.trampolineID
 
 class Booking(models.Model):
-    refNumber = models.IntegerField(primary_key = True, unique = True)
     startTime = models.DateTimeField(null = False, auto_now=True)
-    trampolineID = models.ManyToManyField(Trampoline)
+    trampolineID = models.ForeignKey(Trampoline)
     userID = models.ManyToManyField(User)
     
     class Meta:
-        unique_together = ((trampolineID, startTime), )
+        unique_together = (("trampolineID", "startTime"))
 
     def __str__(self):
-        return str(self.refNumber)
+        return str(self.startTime)
 
     def __unicode__(self):
-        return unicode(self.refNumber)
+        return unicode(self.startTime)
 
 class Review(models.Model):
     time = models.DateField(auto_now=True)
