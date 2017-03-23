@@ -29,8 +29,36 @@ class LinkTests(TestCase):
 		response = self.client.get(reverse('my_account'))
 		self.assertContains(response, '<a href="%s>Log out</a>' % reverse("auth_logout"), html = True)
 
-class templateTests(TestCase):
+class URLReferenceTests(TestCase):
+
+	def test_url_reference_in_index_page_when_logged(self):
+		# Create user and log in
+		test_utils.create_user()
+		self.client.login(username='testuser', password = 'springtime1234')
+
+		# Access index page
+		response = self.client.get(reverse('index'))
+
+		# Check links that appear for logged persons only
+		self.assertIn(reverse('logout'), response.content)
+		self.assertIn(reverse('change_password', response.content))
+
+	def test_url_reference_in_index_when_not_logged(self):
+		# Access index page with user not logged
+		response = self.client.get(reverse('index'))
+
+		# Check links that appear for logged persons
+		self.assertIn(reverse('logout'), response.content)
+		self.assertIn(reverse('change_password'), response.content)
+
+class TemplateTests(TestCase):
 	#Tests pages are using templates.
+
+	def test_main_template_exists(self):
+		# Check main.html exists inside template folder.
+		path_to_base = settings.TEMPLATE_DIR + '/springtime/main.html'
+		print path_to_base
+		self.assertTrue(os.path.isfile(path_to_base))
 
 	def test_bookings_using_template(self):
 		# Check My Account page is using a template.
@@ -57,11 +85,79 @@ class templateTests(TestCase):
 		response = self.client.get(reverse('add_review'))
 		self.assertTemplateUsed(response, 'springtime/add_review.html')
 
-class FormTests(TestCase):
+class DisplayTests(TestCase):
 
-	def 
+	def test_category_page_displays_does_not_exist_message(self):
+		# Try to access categories not saved to database and check message.
+		response = self.client.get(reverse('show_category', args=['RoundSquare']))
+		self.assertIn("The specified category does not exist!".lower().response.content.lower())
 
-class ImageTests(TestCase):
+	def tests_registration_form_displayed_correctly(self):
+		# Access registration page
+		try:
+			response = self.client.get(reverse('register'))
+
+		except:
+			try:
+				response = self.client.get(reverse('springtime:register'))
+			except:
+				return False
+
+		# Username label and input text
+		self.assertIn('Username:', response.content)
+		self.assertIn('input type="text" name="username" value="" size="50"', response.content)
+
+		# Email label and input text
+		self.assertIn('Email:', response.content)
+		self.assertIn('input type="text" name="email" value="" size="50"', response.content)
+
+		# Password label and input text
+		self.assertIn('Password:', response.content)
+		self.assertIn('input type="text" name="password" value="" size"50"', response.content)
+
+		# Password confirmation label and input text
+		self.assertIn('Password confirmation:', response.content)
+		self.assertIn('input type="text" name="password_conf" value="" size"50"', response.content)
+
+		# Check submit button
+		self.assertIn('type="submit" name="submit" value="Register"', response.content)
+
+	def test_login_form_displayed_correctly
+		# Access login page
+		try:
+			response = self.client.get(reverse('login'))
+		except:
+			try:
+				response = self.client.get(reverse('springtime:login'))
+			except:
+				return False
+
+		# Username label and input text
+		self.assertIn('Username:', response.content)
+		self.assertIn('input type="text" name="username" value="" size="50"', response.content)
+
+		# Password label and input text
+		self.assertIn('Password:', response.content)
+		self.assertIn('input type="password" name="password" value="" size="50"', response.content)
+
+		# Submit button
+		self.assertIn('input type="submit" value="submit"', response.content)
+
+	def test_login_redirects_to_index(self):
+		# Create a user
+		test_utils.create_user()
+
+		# Access login page via POST with user data
+		try:
+			response = self.client.post(reverse('login'), {'username': 'testuser12', 'password':'springtime1234'})
+		except:
+			try:
+				response = self.client.post(reverse('springtime:login'), {'username': 'testuser12', 'password': 'springtime1234'})
+			except:
+				return False
+
+		# Check it redirects to index
+		self.assertredirects(response, reverse('index'))
 
 	def test_index_contains_image(self):
 		response = self.client.get(reverse('index'))
@@ -74,29 +170,9 @@ class ImageTests(TestCase):
 	def test_contactUs_contains_image(self):
 		response = self.client.get(reverse('contact_us'))
 		self.assertIn('img src="/static/images', response.content)
+		
 
-
-class ModelTests(TestCase):
-
-	def setUp(self):
-		from populate_springtime import populate
-		populate()
-	except ImportError:
-		print('The module populate_springtime does not exist.')
-	except NameError:
-		print('The function populate() does not exist or is not correct')
-	except:
-		print('Something went wrong in the populate() function :(')
-
-	def get_category(self, name):
-		from springtime.models import Category
-		try:
-			cat = Category.objects.get(name=name)
-		except Category.DoesNotExist:
-			cat = None
-		return cat
-
-class slugFieldTest(TestCase):
+class SlugFieldTest(TestCase):
 
 	def setUp(self):
 		try:
@@ -116,6 +192,19 @@ class slugFieldTest(TestCase):
 		cat.save()
 		self.assertEqual(cat.slug, 'how-do-i-create-a-slug-in-django')
 
+	def test_category_contains_slug_field(self):
+		# Create a new category
+		new_category = Category(name="Test Category")
+		new_category.save()
 
+		# Check slug was generated
+		self.assertEquals(new_category.slug, "test-category")
+
+		# Check there is only one category
+		categories = Category.objects.all()
+		self.assertEquals(len(categories), 1)
+
+		# Check attributes were saved correctly
+		categories[0].slug = new_category.slug
 
 
