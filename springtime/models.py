@@ -50,6 +50,9 @@ class Booking(models.Model):
     startTime = models.DateTimeField(null = False, auto_now=True)
     trampolineID = models.ManyToManyField(Trampoline)
     userID = models.ManyToManyField(User)
+    
+    class Meta:
+        unique_together = ((trampolineID, startTime), )
 
     def __str__(self):
         return str(self.refNumber)
