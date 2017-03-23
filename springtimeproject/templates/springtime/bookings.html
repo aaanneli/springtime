@@ -5,15 +5,17 @@
 
 <div>
 <form id="booking_form" method="post" action="/springtime/bookings/">
- {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                <b>{{ field.help_text }}</b>
-                {{ field }}
-            {% endfor %}
+ {% csrf_token %}    
+    {{form.date}}
+{%for radio in form.slots %}
+<div class="radioChoices">
+    {% if radio.choice_value != '0' %}
+    {{radio}}
+    {% else %}
+    <Strong>Unavailable, sorry!</Strong>
+    {% endif %}
+</div>
+{% endfor %}
 <input type="submit" name="submit" value="Request Booking">
 </form>
     </div>

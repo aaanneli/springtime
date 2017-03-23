@@ -58,8 +58,6 @@ class Booking(models.Model):
     def __unicode__(self):
         return unicode(self.refNumber)
 
-
-
 class Review(models.Model):
     revNumber = models.IntegerField(primary_key = True, unique = True)
     time = models.DateField(auto_now=True)

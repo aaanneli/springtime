@@ -47,7 +47,6 @@ def populate():
 #Reviews, not including username
     Reviews = [
     {"userID": theresa, "revNumber": 9876543210, "content": "Easy booking, lots of fun!", "rating": 5},
-    {"userID": theresa, "revNumber": 8765432109, "content": "Best day of my life!", "rating": 5},
     {"userID": nicola, "revNumber": 7654321098, "content": "Will come back!", "rating": 5},
     {"userID": david, "revNumber": 6543210987,
      "content": "I broke my face, but the professional team at Spring Time took good care of me. My face is recovering.", "rating": 5},
