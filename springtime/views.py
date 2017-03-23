@@ -148,11 +148,11 @@ def select_timeslot(request, dateform):
     print "Bookings:" 
     for bking in bookings:
         print bking.getStartTime()
-        Times.append(bking.getStartTime())
-    print "Times:"
-    print Times
-    print dateform.cleaned_data['date']
+        Times.append(bking.getStartTime().strftime("%H %Y-%m-%d"))
     chosendate = dateform.cleaned_data['date']
+    
+    for t in Times:
+        print t[3::]
     
     timeslotform = SelectSlotForm
     
