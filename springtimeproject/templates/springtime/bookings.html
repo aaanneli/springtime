@@ -3,8 +3,6 @@
 {% block body_block %}
 	<strong>Welcome back, {{ user.username }}!</strong>
 
-
-
 <form id="booking_form" method="post" action="/springtime/bookings/">
 
 <div class ="row">
@@ -12,7 +10,7 @@
 <div class = "4u">
      {% csrf_token %}    
     {{form.date}}
-    <a class="button" onClick="document.getElementById('timeSlots').style.visibility = 'visible';" > Find times... </a>
+    <a id="loadRadios" class="button" onClick="document.getElementById('timeSlots').style.visibility = 'visible';" > Find times... </a>
 </div>
 
     
