@@ -109,6 +109,10 @@ def user_login(request):
 	else:
 		return render(request, 'registration/login.html', {})
 
+def view_reviews(request):
+    reviews = Review.objects.all()
+    return render(request, 'springtime/view_reviews.html', {'reviews' : reviews})
+
 @login_required
 def add_review(request):
     form = ReviewForm()
@@ -147,33 +151,33 @@ def bookings(request):
 @login_required
 def select_timeslot(request, dateform):
     bookings = Booking.objects.all()
-    
+
     slotchoices = ("09", "10", "11", "12", "13", "14", "15", "16", "17")
-    
-    
+
+
     Times = []
     HourTimes = {}
 
-    print "Bookings:" 
+    print "Bookings:"
     for bking in bookings:
         print bking.getStartTime()
         Times.append(bking.getStartTime().strftime("%Y-%m-%d"))
         if bking.getStartTime().strftime("%Y-%m-%d") not in HourTimes.keys():
             HourTimes[bking.getStartTime().strftime("%Y-%m-%d")] = []
         HourTimes[bking.getStartTime().strftime("%Y-%m-%d")].append((bking.getStartTime().strftime("%H")))
-        
-        
-    print "Hour Times = " 
+
+
+    print "Hour Times = "
     print HourTimes
-        
-        
+
+
     chosendate = str(datetime.strptime(str(dateform.cleaned_data['date']), '%Y-%m-%d'))[0:10]
-    
+
     for t in Times:
         print t[3::]
-    
+
     timeslotform = SelectSlotForm
-    
+
     if request.method == 'POST':
         timeslotform = SelectSlotForm(request.POST)
         print "TSf created"

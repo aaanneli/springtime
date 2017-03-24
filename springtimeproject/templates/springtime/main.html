@@ -29,13 +29,14 @@
             <nav id="nav">
                 <ul>
                     <!-- For the moment, Contact Us and Our Trampolines redirect to index -->
-                    
+
                     <li><a href="{% url 'trampolines' %}">Our Trampolines</a></li>
-                    <li><a href="/springtime/add_review/">Reviews</a></li>
 	{% if user.is_authenticated %}
+	    <li><a href="/springtime/add_review/">Reviews</a></li>
         <li><a href="{% url 'bookings' %}">Bookings</a></li>
 		<li><a href="{% url 'auth_logout' %}?next=/springtime/">Log out</a></li>
 	{% else %}
+	    <li><a href="/springtime/view_reviews/">Reviews</a></li>
 		<li><a href="{% url 'registration_register' %}?next=/springtime/">Register</a></li>
 		<li><a href="{% url 'auth_login' %}">Login</a></li>
 	{% endif %}

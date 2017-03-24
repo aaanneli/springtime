@@ -1,0 +1,15 @@
+{% extends 'springtime/main.html' %}
+
+{% block body_block %}
+<strong>You need to be signed in to leave a review.</strong>
+<hr>
+<hr>
+    {% if reviews %}
+        {% for review in reviews %}
+        <strong> {{ review.userID.username }} on {{ review.time }}: {{ review.rating }} star(s) </strong> </br>
+            {{ review.content }} </br> </br>
+        {% endfor %}
+    {% else %}
+        There are currently no reviews
+    {% endif %}
+{% endblock %}
