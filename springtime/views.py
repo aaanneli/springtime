@@ -149,12 +149,21 @@ def select_timeslot(request, dateform):
     
     
     Times = []
+    HourTimes = {}
+
     print "Bookings:" 
     for bking in bookings:
         print bking.getStartTime()
         Times.append(bking.getStartTime().strftime("%Y-%m-%d"))
+        if bking.getStartTime().strftime("%Y-%m-%d") not in HourTimes.keys():
+            HourTimes[bking.getStartTime().strftime("%Y-%m-%d")] = []
+        HourTimes[bking.getStartTime().strftime("%Y-%m-%d")].append([(bking.getStartTime().strftime("%H"))])
         
-#    chosendate = str(dateform.cleaned_data['date'])
+        
+    print "Hour Times = " 
+    print HourTimes
+        
+        
     chosendate = str(datetime.strptime(str(dateform.cleaned_data['date']), '%Y-%m-%d'))[0:10]
     
     for t in Times:

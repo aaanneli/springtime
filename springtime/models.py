@@ -56,7 +56,7 @@ class SelectDate(models.Model):
     
 class Booking(models.Model):
     refNumber = models.IntegerField(primary_key = True, unique = True)
-    startTime = models.DateTimeField(null = False, auto_now=True)
+    startTime = models.DateTimeField(null = False)
     trampolineID = models.ManyToManyField(Trampoline)
     userID = models.ManyToManyField(User)
     
