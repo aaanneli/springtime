@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^accounts/password/change/done/$', views.password_change_done, name='password_change_done'),
     url(r'^accounts/register/complete/$', views.user_registered, name='registration_complete'),
     url(r'^bookings/$', views.bookings, name='bookings'),
+	url(r'^make_booking/$', views.make_booking, name='make_booking'),
     url(r'^contact_us/$', views.contact_us, name='contact_us'),
     url(r'^trampolines/$', views.trampolines, name='trampolines'),
     url(r'^add_review/$', views.add_review, name='add_review'),

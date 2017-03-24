@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
 	$("#loadRadios").click(function(){
-		console.log('fuck');
+		console.log('updateDatabaseDatetime called');
 		var month = $("#id_date_month option:selected").text();
 		var date = $("#id_date_day option:selected").text();
 		var year = $("#id_date_year option:selected").text();

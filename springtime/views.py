@@ -121,11 +121,11 @@ def add_review(request):
         form = ReviewForm(request.POST)
 
         if form.is_valid():
-			review = form.save(commit=False)
-			review.time = datetime.now()
-			review.userID = request.user
-			review.save()
-			return index(request)
+            review = form.save(commit=False)
+            review.time = datetime.now()
+            review.userID = request.user
+            review.save()
+            return index(request)
         else:
 		print(form.errors)
 
@@ -178,20 +178,28 @@ def select_timeslot(request, dateform):
 
     timeslotform = SelectSlotForm
 
-    if request.method == 'POST':
-        timeslotform = SelectSlotForm(request.POST)
-        print "TSf created"
-
-        if timeslotform.is_valid():
-            print "TSf is valid"
-            timeslotform.save(commit=True)
-            return successful_booking(request)
-        else:
-            print "Tsf invalid!"
-            print(timeslotform.errors)
 
     return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'chosendate':chosendate, 'selectslotform':timeslotform, 'existingtimes':HourTimes, 'slots':slotchoices})
 
+def make_booking(request):
+    form = SelectSlotForm()
+    print "ye boiiii"
+    if request.method == 'POST':
+        form = SelectSlotForm(request.POST)
+        print "TSf created"
+        if form.is_valid():
+            print "TSf is valid"
+            booking = form.save(commit=False)
+            booking.startTime = form.cleaned_data["start_Time"]
+            booking.save()
+            print form.cleaned_data
+            print booking
+            return successful_booking(request)
+        else:
+            print "Tsf invalid!"
+            print(form.errors)
+	
+	return index(request)
 
 
 def successful_booking(request):

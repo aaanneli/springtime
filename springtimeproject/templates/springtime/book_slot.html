@@ -6,7 +6,7 @@
 </br>
 <Strong>The available timeslots on that date are:</Strong>
 
-<form id="SelectSlotForm" method="post" action="/springtime/bookings/">
+<form id="SelectSlotForm" method="post" action="{% url 'make_booking' %}">
     
     
 <div class ="row">
@@ -46,11 +46,7 @@
 </div>  
 
 </div>
-
-    
-
-
-<input type="submit" name="submit" value="Request Booking">
+<input type="submit" name="submit" value="Request Booking"/>
     
     
 </form>

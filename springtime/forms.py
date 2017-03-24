@@ -32,7 +32,7 @@ class SelectDateForm(forms.ModelForm):
         
 class SelectSlotForm(forms.ModelForm):
     
-    start_Time = forms.DateTimeField(widget=forms.DateTimeInput, required=True)
+    start_Time = forms.DateTimeField(widget=forms.DateTimeInput, required=True, input_formats=['%H %Y-%m-%d'])
         
     class Meta:
         model = Booking
