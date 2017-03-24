@@ -157,7 +157,7 @@ def select_timeslot(request, dateform):
         Times.append(bking.getStartTime().strftime("%Y-%m-%d"))
         if bking.getStartTime().strftime("%Y-%m-%d") not in HourTimes.keys():
             HourTimes[bking.getStartTime().strftime("%Y-%m-%d")] = []
-        HourTimes[bking.getStartTime().strftime("%Y-%m-%d")].append([(bking.getStartTime().strftime("%H"))])
+        HourTimes[bking.getStartTime().strftime("%Y-%m-%d")].append((bking.getStartTime().strftime("%H")))
         
         
     print "Hour Times = " 
@@ -180,7 +180,7 @@ def select_timeslot(request, dateform):
         else:
             print(timeslotform.errors)
 
-    return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'chosendate':chosendate, 'selectslotform':timeslotform, 'existingtimes':Times, 'slots':slotchoices})
+    return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'chosendate':chosendate, 'selectslotform':timeslotform, 'existingtimes':HourTimes, 'slots':slotchoices})
 
 
 
