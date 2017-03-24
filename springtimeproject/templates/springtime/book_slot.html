@@ -11,11 +11,28 @@
 
 <form id="booking_form" method="post" action="/springtime/bookings/">
 
+
+    
+    
 <div class ="row">
 
 <div class = "4u">
-     {% csrf_token %}    
-    {{selectslotform}}
+     {% csrf_token %}   
+    
+    
+    {% for slot in slots %}
+    {% if chosendate in existingtimes%}
+    GOTEM
+    {% endif %}
+
+    <div class="myradio">
+         <label for="id_slot_{{i}}"><input id="id_slot_{{i}}" name="slot" type="radio" value="{{i}}" required /> {{slot}}:00 </label>
+    </div>
+    {% endfor %}
+    
+
+    
+    
 </div>
 
  </div>

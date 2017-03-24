@@ -34,6 +34,7 @@ class SelectSlotForm(forms.ModelForm):
     SLOTS = (('1', '09:00 - 10:00'), ('2', '10:00 - 11:00'), ('3', '11:00 - 12:00'), ('4', '12:00 - 13:00'), ('5', '13:00 - 14:00'), ('6', '14:00 - 15:00'), ('7', '15:00 - 16:00'), ('8', '16:00 - 17:00')) # '0' means unavailable
     slots = forms.ChoiceField(widget=forms.RadioSelect, choices=SLOTS)
     
+    
     class Meta:
         model = Booking
         fields = ('slots',)

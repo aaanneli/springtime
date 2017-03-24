@@ -144,12 +144,18 @@ def bookings(request):
 
 def select_timeslot(request, dateform):
     bookings = Booking.objects.all()
+    
+    slotchoices = ("09", "10", "11", "12", "13", "14", "15", "16", "17")
+    
+    
     Times = []
     print "Bookings:" 
     for bking in bookings:
         print bking.getStartTime()
-        Times.append(bking.getStartTime().strftime("%H %Y-%m-%d"))
-    chosendate = dateform.cleaned_data['date']
+        Times.append(bking.getStartTime().strftime("%Y-%m-%d"))
+        
+#    chosendate = str(dateform.cleaned_data['date'])
+    chosendate = str(datetime.strptime(str(dateform.cleaned_data['date']), '%Y-%m-%d'))[0:10]
     
     for t in Times:
         print t[3::]
@@ -165,7 +171,7 @@ def select_timeslot(request, dateform):
         else:
             print(timeslotform.errors)
 
-    return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'chosendate':chosendate, 'selectslotform':timeslotform, 'existingtimes':Times})
+    return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'chosendate':chosendate, 'selectslotform':timeslotform, 'existingtimes':Times, 'slots':slotchoices})
 
 
 
