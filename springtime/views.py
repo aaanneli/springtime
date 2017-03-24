@@ -179,9 +179,12 @@ def select_timeslot(request, dateform):
         Times.append(bking.getStartTime().strftime("%Y-%m-%d"))
         if bking.getStartTime().strftime("%Y-%m-%d") not in HourTimes.keys():
             HourTimes[bking.getStartTime().strftime("%Y-%m-%d")] = []
+
         HourTimes[bking.getStartTime().strftime("%Y-%m-%d")].append([(bking.getStartTime().strftime("%H"))])
-        
-        
+
+        HourTimes[bking.getStartTime().strftime("%Y-%m-%d")].append((bking.getStartTime().strftime("%H")))
+
+         
     print "Hour Times = " 
     print HourTimes
         
@@ -203,8 +206,13 @@ def select_timeslot(request, dateform):
             return successful_booking(request, timeslotform)
         else:
             print(timeslotform.errors)
+<<<<<<< HEAD
     # Return and return book_slot page depending on the context.
     return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'chosendate':chosendate, 'selectslotform':timeslotform, 'existingtimes':Times, 'slots':slotchoices})
+=======
+
+    return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'chosendate':chosendate, 'selectslotform':timeslotform, 'existingtimes':HourTimes, 'slots':slotchoices})
+>>>>>>> fc01e6ef07167a5764c8bb29b774b716a798dd20
 
 
 # Render and return registration complete page.

@@ -4,9 +4,6 @@
 	<strong>Welcome back, {{ user.username }}! &nbsp; You've selected: {{chosendate}}</strong>
 
 </br>
-
-{{existingtimes}}
-
 <Strong>The available timeslots on that date are:</Strong>
 
 <form id="booking_form" method="post" action="/springtime/bookings/">
@@ -21,13 +18,27 @@
     
     
     {% for slot in slots %}
-    {% if chosendate in existingtimes%}
-    GOTEM
-    {% endif %}
-
+    
+    {%for key, value in existingtimes.items %}
+    {% if chosendate == key %}
+    {% if slot in value %}
+    
+    Sorry, this slot is taken.
+    
+    
+    {% else %}
     <div class="myradio">
          <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}" required /> {{slot}}:00 </label>
     </div>
+    {% endif %}
+    {% else %}
+    <div class="myradio">
+         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}" required /> {{slot}}:00 </label>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+
     {% endfor %}
     
 
