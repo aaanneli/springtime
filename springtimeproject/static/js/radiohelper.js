@@ -1,0 +1,4 @@
+function updateDateTime(chosenDate) {
+    console.log(chosenDate);
+    document.getElementById("id_start_Time").value = chosenDate.toString() + document.getElementById("date").innerHTML;
+}

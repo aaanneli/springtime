@@ -1,17 +1,17 @@
 {% extends 'springtime/main.html' %}
 
 {% block body_block %}
-	<strong>Welcome back, {{ user.username }}! &nbsp; You've selected: {{chosendate}}</strong>
+	<strong>Welcome, {{ user.username }}! &nbsp; You've selected:<div id="date"> {{chosendate}} </div></strong>
 
 </br>
 <Strong>The available timeslots on that date are:</Strong>
 
-<form id="booking_form" method="post" action="/springtime/bookings/">
+<form id="SelectSlotForm" method="post" action="/springtime/bookings/">
     
     
 <div class ="row">
 
-<div class = "4u">
+<div class = "6u">
      {% csrf_token %}   
     
     
@@ -26,12 +26,12 @@
     
     {% else %}
     <div class="radio">
-         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}"/> {{slot}}:00 </label>
+         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}" onClick="updateDateTime({{slot}})"/> {{slot}}:00 </label>
     </div>
     {% endif %}
     {% else %}
     <div class="radio">
-         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}"/> {{slot}}:00 </label>
+         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}"  onClick="updateDateTime({{slot}})"/> {{slot}}:00 </label>
     </div>
     {% endif %}
     {% endfor %}
@@ -40,18 +40,15 @@
     {% endfor %}
     
 </div>
+    
+<div class="6u">
+    {{selectslotform}}
+</div>  
 
 </div>
 
     
-         {% for hidden in timeslotform.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-            {% for field in timeslotform.visible_fields %}
-                {{ field.errors }}
-                <b>{{ field.help_text }}</b>
-                {{ field }}
-            {% endfor %}
+
 
 <input type="submit" name="submit" value="Request Booking">
     

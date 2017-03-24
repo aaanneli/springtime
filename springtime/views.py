@@ -183,6 +183,7 @@ def select_timeslot(request, dateform):
             timeslotform.save(commit=True)
             return successful_booking(request)
         else:
+            print "Tsf invalid!"
             print(timeslotform.errors)
 
     return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'chosendate':chosendate, 'selectslotform':timeslotform, 'existingtimes':HourTimes, 'slots':slotchoices})
