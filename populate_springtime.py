@@ -62,9 +62,9 @@ def populate():
     for review in Reviews:
         r = add_review(review["userID"] , review["content"], review["rating"])
 
-        
+
     four_hours_from_now = datetime.now() + timedelta(hours=4)
-        
+
     add_booking(hilary, 4321098765,  tramp_list[0], datetime.now())
     add_booking(donald, 8765432109,  tramp_list[3], datetime.now())
     add_booking(barack, 5432109876,  tramp_list[4], four_hours_from_now)
@@ -111,10 +111,10 @@ def add_user(username, password, is_staff, is_admin):
 
 def add_booking(userID, refNumber, trampolineID, startTime):
     print "adding bookings"
-    b=Booking.objects.get_or_create(refNumber=refNumber)[0]
+    b=Booking.objects.get_or_create(refNumber=refNumber, startTime=startTime)[0]
     b.userID.add(userID)
     b.trampolineID.add(trampolineID)
-    b.startTime=startTime
+    #b.startTime=startTime
     print startTime
     b.save()
     return b
