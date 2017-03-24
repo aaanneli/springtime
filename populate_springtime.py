@@ -15,13 +15,19 @@ def populate():
     {"trampolineID": "per12345",
 	 "broken": False},
     {"trampolineID": "per54321",
-	 "broken": True}]
+	 "broken": True},
+	{"trampolineID": "per98765",
+	 "broken": False}]
 
     Rectangular_Tramp = [
 	{"trampolineID": "rec13579",
 	 "broken": True},
 	{"trampolineID": "rec12579",
-	 "broken": False}]
+	 "broken": False},
+	{"trampolineID" : "rec98765",
+	 "broken": False},
+	{"trampolineID" : "rec54321",
+	 "broken" : False}]
 
     Circular_Tramp = [
     {"trampolineID": "cir02468",
