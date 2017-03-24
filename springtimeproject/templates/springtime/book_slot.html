@@ -7,37 +7,30 @@
 <Strong>The available timeslots on that date are:</Strong>
 
 <form id="SelectSlotForm" method="post" action="{% url 'make_booking' %}">
-    
-    
+
 <div class ="row">
 
 <div class = "6u">
-     {% csrf_token %}   
-    
-    
-    {% for slot in slots %}
-    
-    {%for key, value in existingtimes.items %}
-    {% if chosendate == key %}
-    {% if slot in value %}
-    
-    Sorry, this slot is taken.
-    
-    
-    {% else %}
-    <div class="radio">
-         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}" onClick="updateDateTime({{slot}})"/> {{slot}}:00 </label>
+
+	
+	{% csrf_token %}    
+
+	{% for i in iterations %}
+
+	{% if i in takenhours %}
+	<div>
+	{{i}}:00 is taken!
+	</div>
+	{% else %}
+	<div class="radio">
+         <label for="id_slot_{{slot}}"><input id="id_slot_{{i}}" name="i" type="radio" value="{{i}}" onClick="updateDateTime({{i}})"/> {{i}}:00 </label>
     </div>
-    {% endif %}
-    {% else %}
-    <div class="radio">
-         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}"  onClick="updateDateTime({{slot}})"/> {{slot}}:00 </label>
-    </div>
-    {% endif %}
-    {% endfor %}
+	{% endif %}
+
+	{% endfor %}
 
 
-    {% endfor %}
+	
     
 </div>
     

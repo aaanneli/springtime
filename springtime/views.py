@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 
@@ -154,7 +155,18 @@ def select_timeslot(request, dateform):
 
     slotchoices = ("09", "10", "11", "12", "13", "14", "15", "16", "17")
 
+    print "Slotchoices:"
+    print slotchoices
 
+    print "Cleaned date:"
+    print (datetime.strptime(str(dateform.cleaned_data['date']), '%Y-%m-%d'))
+    date =  timezone.make_aware(datetime.strptime(str(dateform.cleaned_data['date']), '%Y-%m-%d'))
+    print "date:", date
+    bookings2 = Booking.objects.filter(startTime__year = date.year,
+                                       startTime__month = date.month,
+                                       startTime__day = date.day,)
+
+    
     Times = []
     HourTimes = {}
 
@@ -170,6 +182,12 @@ def select_timeslot(request, dateform):
     print "Hour Times = "
     print HourTimes
 
+    takenhours = []
+
+    for booking in bookings2:
+        print "Bking2:", booking.startTime.hour
+        takenhours.append(booking.startTime.hour)
+        
 
     chosendate = str(datetime.strptime(str(dateform.cleaned_data['date']), '%Y-%m-%d'))[0:10]
 
@@ -179,11 +197,10 @@ def select_timeslot(request, dateform):
     timeslotform = SelectSlotForm
 
 
-    return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'chosendate':chosendate, 'selectslotform':timeslotform, 'existingtimes':HourTimes, 'slots':slotchoices})
+    return render(request, 'springtime/book_slot.html', {'bookings' : bookings, 'iterations':range(9,18), 'chosendate':chosendate, 'selectslotform':timeslotform,'takenhours':takenhours, 'existingtimes':HourTimes, 'slots':slotchoices})
 
 def make_booking(request):
     form = SelectSlotForm()
-    print "ye boiiii"
     if request.method == 'POST':
         form = SelectSlotForm(request.POST)
         print "TSf created"
@@ -192,8 +209,6 @@ def make_booking(request):
             booking = form.save(commit=False)
             booking.startTime = form.cleaned_data["start_Time"]
             booking.save()
-            print form.cleaned_data
-            print booking
             return successful_booking(request)
         else:
             print "Tsf invalid!"
