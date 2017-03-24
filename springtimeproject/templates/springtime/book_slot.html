@@ -7,8 +7,6 @@
 <Strong>The available timeslots on that date are:</Strong>
 
 <form id="booking_form" method="post" action="/springtime/bookings/">
-
-
     
     
 <div class ="row">
@@ -27,13 +25,13 @@
     
     
     {% else %}
-    <div class="myradio">
-         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}" required /> {{slot}}:00 </label>
+    <div class="radio">
+         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}"/> {{slot}}:00 </label>
     </div>
     {% endif %}
     {% else %}
-    <div class="myradio">
-         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}" required /> {{slot}}:00 </label>
+    <div class="radio">
+         <label for="id_slot_{{slot}}"><input id="id_slot_{{slot}}" name="slot" type="radio" value="{{slot}}"/> {{slot}}:00 </label>
     </div>
     {% endif %}
     {% endfor %}
@@ -41,15 +39,23 @@
 
     {% endfor %}
     
-
-    
-    
 </div>
 
- </div>
+</div>
 
+    
+         {% for hidden in timeslotform.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            {% for field in timeslotform.visible_fields %}
+                {{ field.errors }}
+                <b>{{ field.help_text }}</b>
+                {{ field }}
+            {% endfor %}
 
 <input type="submit" name="submit" value="Request Booking">
+    
+    
 </form>
 
 

@@ -142,6 +142,9 @@ def bookings(request):
 
     return render(request, 'springtime/bookings.html', {'form': form})
 
+
+
+@login_required
 def select_timeslot(request, dateform):
     bookings = Booking.objects.all()
     
@@ -173,10 +176,12 @@ def select_timeslot(request, dateform):
     
     if request.method == 'POST':
         timeslotform = SelectSlotForm(request.POST)
+        print "TSf created"
 
         if timeslotform.is_valid():
+            print "TSf is valid"
             timeslotform.save(commit=True)
-            return successful_booking(request, timeslotform)
+            return successful_booking(request)
         else:
             print(timeslotform.errors)
 
@@ -184,6 +189,8 @@ def select_timeslot(request, dateform):
 
 
 
+def successful_booking(request):
+    return render(request, 'springtime/index.html', {})
 
 def user_registered(request):
 	return render(request, 'springtime/registration_complete.html', {})
